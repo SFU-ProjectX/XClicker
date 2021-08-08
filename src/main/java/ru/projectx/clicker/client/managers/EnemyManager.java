@@ -5,31 +5,30 @@ import ru.projectx.clicker.client.utils.InfinityList;
 
 public class EnemyManager {
     private static final InfinityList<Enemy.TYPE> enemies = new InfinityList<>(Enemy.TYPE.values());
-    private static Enemy current = enemies.getNext().create();
+    private static Enemy current = EnemyManager.enemies.getNext().create();
 
-    public static int getEnemyIndex() { return current.getIndex(); }
+    public static Enemy getEnemy() { return EnemyManager.current; }
 
-    public static void load(int i) {
-        current = enemies.get(i).create();
+    public static void load(int i, int hp) {
+        EnemyManager.current = EnemyManager.enemies.get(i).create();
+        EnemyManager.current.setHp(hp);
+        //todo need it
+        //GuiManager.setHp((double) EnemyManager.current.getHp() / EnemyManager.current.getMaxHp());
     }
 
     public static void onHit(int damage) {
-        current.hit(damage);
-        if(current.isDead()) {
-            Player.addMoney(current.getReward());
-            Player.addKills();
-            Player.addLevel();
+        EnemyManager.current.hit(damage);
+        if(EnemyManager.current.isDead()) {
+            Player.onKill(EnemyManager.current.getType());
             GuiManager.setHp(1);
-            current = enemies.getNext().create();
+            EnemyManager.current = EnemyManager.enemies.getNext().create();
             GuiManager.nextEnemy();
         }
-        GuiManager.setHp((double) current.getHp() / current.getMaxHp());
-        GuiManager.setPlayerKills(Player.getKills());
-        GuiManager.setPlayerLevel(Player.getLevel());
-        GuiManager.setPlayerMoney(Player.getMoney());
+        GuiManager.setHp((double) EnemyManager.current.getHp() / EnemyManager.current.getMaxHp());
+        GuiManager.updateStats();
     }
 
-    private static class Enemy {
+    public static class Enemy {
         private final Enemy.TYPE type;
         private boolean dead;
         private int hp;
@@ -49,19 +48,21 @@ public class EnemyManager {
             this.hp -= damage;
         }
 
-        public Enemy.TYPE getType() { return type; }
+        public Enemy.TYPE getType() { return this.type; }
 
-        public boolean isDead() { return dead; }
+        public boolean isDead() { return this.dead; }
 
-        public int getHp() { return hp; }
+        public int getHp() { return this.hp; }
 
-        public int getMaxHp() { return type.getHp(); }
+        public int getMaxHp() { return this.type.getHp(); }
 
-        public int getReward() { return type.getReward(); }
+        public int getReward() { return this.type.getReward(); }
 
-        public int getIndex() { return type.getIndex(); }
+        public int getIndex() { return this.type.getIndex(); }
 
-        private enum TYPE {
+        public void setHp(int hp) { this.hp = hp; }
+
+        public enum TYPE {
             BAD_BOY(100, 5, 0),
             EYE(150, 10, 1),
             ANIME1(200, 101, 2),
@@ -78,13 +79,13 @@ public class EnemyManager {
                 this.index = index;
             }
 
-            public int getHp() { return hp; }
+            public int getHp() { return this.hp; }
 
-            public int getReward() { return reward; }
+            public int getReward() { return this.reward; }
 
             public Enemy create() { return new Enemy(this); }
 
-            public int getIndex() { return index; }
+            public int getIndex() { return this.index; }
         }
     }
 }

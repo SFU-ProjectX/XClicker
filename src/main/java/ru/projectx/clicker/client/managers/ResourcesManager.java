@@ -5,21 +5,20 @@ import ru.projectx.clicker.client.utils.InfinityList;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Objects;
 
 public class ResourcesManager {
     public static final InfinityList<BufferedImage> enemies = new InfinityList<>();
 
     public static void init() {
-        enemies.add(getImage("images/enemies/1.png"));
-        enemies.add(getImage("images/enemies/2.png"));
-        enemies.add(getImage("images/enemies/3.png"));
-        enemies.add(getImage("images/enemies/4.png"));
-        enemies.add(getImage("images/enemies/5.png"));
-        enemies.setIndex(EnemyManager.getEnemyIndex()-1);
+        BufferedImage img;
+        int i = 1;
+        while ((img = ResourcesManager.getImage("images/enemies/" + i + ".png")) != null) {
+            ResourcesManager.enemies.add(img);
+            i++;
+        }
+        ResourcesManager.enemies.setIndex(EnemyManager.getEnemy().getIndex()-1);
     }
 
     public static URL getResource(String path) {
@@ -32,10 +31,7 @@ public class ResourcesManager {
 
     public static BufferedImage getImage(String path) {
         try {
-            return ImageIO.read(Objects.requireNonNull(ResourcesManager.getResourceAsStream(path)));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+            return ImageIO.read(ResourcesManager.getResource(path));
+        } catch (Exception e) { return null; }
     }
 }

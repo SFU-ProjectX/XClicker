@@ -2,7 +2,6 @@ package ru.projectx.clicker.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import ru.projectx.clicker.client.managers.EnemyManager;
 import ru.projectx.clicker.client.managers.GuiManager;
 import ru.projectx.clicker.client.managers.ResourcesManager;
 import ru.projectx.clicker.client.managers.SaveManager;
