@@ -5,22 +5,20 @@ import javafx.stage.Stage;
 import ru.projectx.clicker.client.managers.EnemyManager;
 import ru.projectx.clicker.client.managers.GuiManager;
 import ru.projectx.clicker.client.managers.ResourcesManager;
+import ru.projectx.clicker.client.managers.SaveManager;
 
 public class XClickerStarter extends Application {
 
     @Override
     public void start(Stage stage) {
+        SaveManager.load();
         ResourcesManager.init();
         GuiManager.start(stage);
     }
 
     @Override
     public void stop() throws Exception {
+        SaveManager.save();
         super.stop();
-    }
-
-    @Override
-    public void init() throws Exception {
-        super.init();
     }
 }

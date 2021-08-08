@@ -45,5 +45,9 @@ public class Player {
     public static void addMoney(int money) {
         Player.money += money;
     }
+
+    public static void setDamage(int damage) {
+        Player.damage = damage;
+    }
 }
 

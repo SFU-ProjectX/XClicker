@@ -1,7 +1,5 @@
 package ru.projectx.clicker.client.managers;
 
-import javafx.css.CssMetaData;
-import javafx.css.Styleable;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,7 +22,7 @@ public class GuiManager {
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.setTitle("XClicker 1.0.0");
+            stage.setTitle("XClicker 1.0.1");
             stage.getIcons().add(new Image(ResourcesManager.getResourceAsStream("images/icons/favicon.png")));
             GuiManager.lookup(scene);
             GuiManager.setLogic();

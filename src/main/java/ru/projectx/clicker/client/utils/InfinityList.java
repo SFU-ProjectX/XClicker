@@ -22,5 +22,12 @@ public class InfinityList<E> {
         return this.objects.get(this.index);
     }
 
+    public E get(int i) {
+        this.index = i;
+        return this.objects.get(i);
+    }
+
+    public void setIndex(int i) { this.index = i; }
+
     public void add(E object) { this.objects.add(object); }
 }

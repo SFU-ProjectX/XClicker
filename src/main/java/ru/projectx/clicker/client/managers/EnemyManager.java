@@ -7,6 +7,12 @@ public class EnemyManager {
     private static final InfinityList<Enemy.TYPE> enemies = new InfinityList<>(Enemy.TYPE.values());
     private static Enemy current = enemies.getNext().create();
 
+    public static int getEnemyIndex() { return current.getIndex(); }
+
+    public static void load(int i) {
+        current = enemies.get(i).create();
+    }
+
     public static void onHit(int damage) {
         current.hit(damage);
         if(current.isDead()) {
@@ -53,19 +59,23 @@ public class EnemyManager {
 
         public int getReward() { return type.getReward(); }
 
+        public int getIndex() { return type.getIndex(); }
+
         private enum TYPE {
-            BAD_BOY(100, 5),
-            EYE(150, 10),
-            ANIME1(200, 101),
-            ANIME2(50, 103),
-            PUTIN(1000, 10111);
+            BAD_BOY(100, 5, 0),
+            EYE(150, 10, 1),
+            ANIME1(200, 101, 2),
+            ANIME2(50, 103, 3),
+            PUTIN(1000, 10111, 4);
 
             private final int hp;
+            private final int index;
             private final int reward;
 
-            TYPE(int hp, int reward) {
+            TYPE(int hp, int reward, int index) {
                 this.hp = hp;
                 this.reward = reward;
+                this.index = index;
             }
 
             public int getHp() { return hp; }
@@ -73,6 +83,8 @@ public class EnemyManager {
             public int getReward() { return reward; }
 
             public Enemy create() { return new Enemy(this); }
+
+            public int getIndex() { return index; }
         }
     }
 }

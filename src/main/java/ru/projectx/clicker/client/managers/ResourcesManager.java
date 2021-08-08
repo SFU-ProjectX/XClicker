@@ -19,6 +19,7 @@ public class ResourcesManager {
         enemies.add(getImage("images/enemies/3.png"));
         enemies.add(getImage("images/enemies/4.png"));
         enemies.add(getImage("images/enemies/5.png"));
+        enemies.setIndex(EnemyManager.getEnemyIndex()-1);
     }
 
     public static URL getResource(String path) {
