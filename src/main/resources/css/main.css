@@ -1,0 +1,37 @@
+#main {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/background/background.png');
+}
+
+#shop {
+    -fx-background-color: transparent;
+	-fx-background-size: 180 140;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/icons/shop.png');
+}
+
+#level {
+    -fx-background-color: transparent;
+	-fx-background-size: 180 140;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/icons/level.png');
+}
+
+#settings {
+    -fx-background-color: transparent;
+	-fx-background-size: 120 100;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/icons/settings.png');
+}
+
+#avatar {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/avatars/default.png');
+}

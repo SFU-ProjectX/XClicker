@@ -2,9 +2,13 @@ plugins {
     id 'java'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ru.projectx.clicker.client.XClickerStarter'
+        )
+    }
+}
+
 group 'ru.projectx'
 version '1.0.0'
-
-repositories {
-    mavenCentral()
-}
