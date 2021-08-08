@@ -1,7 +1,7 @@
 package ru.projectx.clicker.client;
 
 public class Player {
-    private static int damage = 10;
+    private static int damage = 5;
     private static int money = 0;
     private static int kills = 0;
     private static int level = 1;
@@ -48,6 +48,10 @@ public class Player {
 
     public static void setDamage(int damage) {
         Player.damage = damage;
+    }
+
+    public static void addDamage(int damage) {
+        Player.damage += damage;
     }
 }
 

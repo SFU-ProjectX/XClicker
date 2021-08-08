@@ -10,6 +10,7 @@ import java.awt.image.SinglePixelPackedSampleModel;
 import java.nio.IntBuffer;
 
 public class ImageUtils {
+
     public static WritableImage convertToFxImageJava8(BufferedImage image) {
         int bw = image.getWidth();
         int bh = image.getHeight();

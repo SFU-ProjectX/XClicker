@@ -12,8 +12,8 @@ import ru.projectx.clicker.client.Player;
 import ru.projectx.clicker.client.utils.ImageUtils;
 
 public class GuiManager {
-    private static Text player_money, player_kills, player_level;
-    private static Button shop, settings, level, enemy;
+    private static Text player_money, player_kills, player_level, player_damage;
+    private static Button shop, settings, level, enemy, damage_up;
     private static ProgressBar hp;
 
     public static void start(Stage stage) {
@@ -31,6 +31,7 @@ public class GuiManager {
             GuiManager.setPlayerKills(Player.getKills());
             GuiManager.setPlayerLevel(Player.getLevel());
             GuiManager.setPlayerMoney(Player.getMoney());
+            GuiManager.setPlayerDamage(Player.getDamage());
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,13 +45,24 @@ public class GuiManager {
         level = (Button) scene.lookup("#level");
         enemy = (Button) scene.lookup("#enemy");
         hp = (ProgressBar) scene.lookup("#hp");
+        damage_up = (Button) scene.lookup("#damage_up");
         player_money = (Text) scene.lookup("#player_money");
         player_kills = (Text) scene.lookup("#player_kills");
         player_level = (Text) scene.lookup("#player_level");
+        player_level = (Text) scene.lookup("#player_level");
+        player_damage = (Text) scene.lookup("#player_damage");
     }
 
     private static void setLogic() {
         enemy.setOnMouseClicked(event -> EnemyManager.onHit(Player.getDamage()));
+        damage_up.setOnMouseClicked(event -> {
+            if(Player.getMoney() >= 100) {
+                Player.addDamage(10);
+                Player.setMoney(Player.getMoney() - 100);
+                GuiManager.setPlayerDamage(Player.getDamage());
+                GuiManager.setPlayerMoney(Player.getMoney());
+            }
+        });
     }
 
     public static void setHp(double percent) {
@@ -67,6 +79,10 @@ public class GuiManager {
 
     public static void setPlayerMoney(Object money) {
         GuiManager.player_money.setText(money.toString());
+    }
+
+    public static void setPlayerDamage(Object damage) {
+        GuiManager.player_damage.setText(damage.toString());
     }
 
     public static void nextEnemy() {
