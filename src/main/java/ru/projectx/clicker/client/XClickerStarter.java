@@ -9,7 +9,7 @@ import ru.projectx.clicker.client.managers.SaveManager;
 public class XClickerStarter extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
         SaveManager.load();
         ResourcesManager.init();
         GuiManager.start(stage);

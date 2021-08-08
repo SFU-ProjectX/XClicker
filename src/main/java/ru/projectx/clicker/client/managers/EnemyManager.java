@@ -67,7 +67,15 @@ public class EnemyManager {
             EYE(150, 10, 1),
             ANIME1(200, 101, 2),
             ANIME2(50, 103, 3),
-            PUTIN(1000, 10111, 4);
+            PUTIN(1000, 10111, 4),
+            ANIME3(4534, 10433, 5),
+            ANIME4(43532, 50413, 6),
+            ANIME5(100000, 100000, 7),
+            ANIME6(250000, 170000, 8),
+            ANIME10(270000, 170000, 9),
+            ANIME11(300000, 190000, 10),
+            ANIME12(350000, 250000, 11);
+
 
             private final int hp;
             private final int index;

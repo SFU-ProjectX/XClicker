@@ -13,7 +13,7 @@ import ru.projectx.clicker.client.utils.ImageUtils;
 
 public class GuiManager {
     private static Text player_money, player_kills, player_level, player_damage;
-    private static Button shop, settings, level, enemy, damage_up;
+    private static Button shop, settings, level, enemy, damage_up, damage_up1;
     private static ProgressBar hp;
 
     public static void start(Stage stage) {
@@ -48,6 +48,7 @@ public class GuiManager {
         GuiManager.player_level = (Text) scene.lookup("#player_level");
         GuiManager.player_level = (Text) scene.lookup("#player_level");
         GuiManager.player_damage = (Text) scene.lookup("#player_damage");
+        GuiManager.damage_up1 = (Button) scene.lookup("#damage_up1");
     }
 
     private static void setLogic() {
@@ -56,6 +57,13 @@ public class GuiManager {
             if(Player.getMoney() >= 100) {
                 Player.addDamage(10);
                 Player.setMoney(Player.getMoney() - 100);
+                GuiManager.updateStats();
+            }
+        });
+        GuiManager.damage_up1.setOnMouseClicked(event -> {
+            if(Player.getMoney() >= 50000) {
+                Player.addDamage(1000);
+                Player.setMoney(Player.getMoney() - 50000);
                 GuiManager.updateStats();
             }
         });
