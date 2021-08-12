@@ -1,4 +1,0 @@
-ru/projectx/clicker/XClicker.java
- ru.projectx.clicker.XClicker
-ru/projectx/clicker/Constants.java
- ru.projectx.clicker.Constants
