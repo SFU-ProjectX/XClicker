@@ -7,15 +7,39 @@
 
 #shop {
     -fx-background-color: transparent;
-    -fx-background-size: 180 140;
+    -fx-background-size: 120 120;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-image: url('../images/icons/shop.png');
 }
 
+#friends {
+    -fx-background-color: transparent;
+    -fx-background-size: 120 120;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/icons/friends.png');
+}
+
+#leaderboard {
+    -fx-background-color: transparent;
+    -fx-background-size: 120 120;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/icons/leaderboard.png');
+}
+
+#infinity_mode {
+    -fx-background-color: transparent;
+    -fx-background-size: 120 120;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/icons/infinity_mode.png');
+}
+
 #level {
     -fx-background-color: transparent;
-    -fx-background-size: 180 140;
+    -fx-background-size: 120 120;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-image: url('../images/icons/level.png');
@@ -23,7 +47,7 @@
 
 #settings {
     -fx-background-color: transparent;
-    -fx-background-size: 120 100;
+    -fx-background-size: 120 120;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-image: url('../images/icons/settings.png');
@@ -33,7 +57,7 @@
     -fx-background-color: transparent;
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
-    -fx-background-image: url('../images/avatars/default.png');
+    -fx-background-image: url('../images/avatars/gg.png');
 }
 
 #auth {
