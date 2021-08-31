@@ -90,7 +90,8 @@ public class EnemyManager {
             ANIME6(250000, 170000, 8),
             ANIME10(270000, 170000, 9),
             ANIME11(300000, 190000, 10),
-            ANIME12(350000, 250000, 11);
+            ANIME12(350000, 250000, 11),
+            LUNA(400000, 300000, 12);
 
 
             private final int hp;

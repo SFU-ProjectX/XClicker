@@ -2,10 +2,7 @@ package ru.projectx.clicker.managers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -17,6 +14,7 @@ import ru.projectx.clicker.utils.ImageUtils;
 
 public class GuiManager {
     private static Pane menu, auth, game;
+    private static TabPane shop_menu;
     private static Text player_money, player_kills, player_level, player_damage;
     private static Button shop, settings, level, enemy, damage_up, damage_up1, enter;
     private static ProgressBar hp;
@@ -62,6 +60,7 @@ public class GuiManager {
         GuiManager.auth = (Pane) scene.lookup("#auth");
         GuiManager.menu = (Pane) scene.lookup("#menu");
         GuiManager.game = (Pane) scene.lookup("#game");
+        GuiManager.shop_menu = (TabPane) scene.lookup("#shop_menu");
     }
 
     private static void setLogic() {
@@ -83,6 +82,17 @@ public class GuiManager {
         GuiManager.enter.setOnMouseClicked(event -> {
             if(!GuiManager.login.getText().isEmpty() && !GuiManager.password.getText().isEmpty()) {
                 Client.send("auth", GuiManager.login.getText(), GuiManager.password.getText());
+            }
+        });
+
+        GuiManager.shop.setOnMouseClicked(event -> {
+            if (GuiManager.shop_menu.isDisable()) {
+                GuiManager.shop_menu.setDisable(false);
+                GuiManager.shop_menu.setVisible(true);
+            }
+            else {
+                GuiManager.shop_menu.setDisable(true);
+                GuiManager.shop_menu.setVisible(false);
             }
         });
     }
