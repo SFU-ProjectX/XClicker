@@ -72,6 +72,24 @@
     -fx-background-color: #365c88;
 }
 
+#auth {
+    -fx-background-color: white;
+}
+
+#weapon1_icon {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/weapons/1.png');
+}
+
+#weapon2_icon {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/weapons/2.png');
+}
+
 .progress-bar .bar {
     -fx-background-radius: 20;
 }
@@ -83,10 +101,6 @@
     -fx-background-radius: 20;
 }
 
-#auth {
-    -fx-background-color: white;
-}
-
 .tab-pane .tab-header-area .tab-header-background {
     -fx-opacity: 1;
     -fx-background-color: #ffffff;
@@ -94,17 +108,25 @@
 
 .tab-pane {
     -fx-tab-min-width: 90px;
-    -fx-tab-min-height: 30px;
+    -fx-tab-min-height: 40px;
+    -fx-tab-max-height: 40px;
     -fx-padding: -5 -1 -1 -1;
 }
 
 .tab {
-    -fx-pref-width: 260;
+    -fx-pref-width: 270;
 }
 
 .tab-pane .tab {
     -fx-background-color: #e6e6e6;
+}
 
+.tab-down-button {
+    -fx-padding: 0;
+}
+
+.tab-down-button .arrow {
+    -fx-padding: 0;
 }
 
 .tab-pane .tab:selected {
@@ -113,8 +135,9 @@
 
 .tab .tab-label {
     -fx-alignment: CENTER;
+    -fx-pref-width: 250;
     -fx-text-fill: #828282;
-    -fx-font-size: 18px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
 
