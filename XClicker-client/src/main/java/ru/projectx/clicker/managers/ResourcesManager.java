@@ -1,15 +1,16 @@
 package ru.projectx.clicker.managers;
 
 import ru.projectx.clicker.XClickerClient;
-import ru.projectx.clicker.utils.InfinityList;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResourcesManager {
-    public static final InfinityList<BufferedImage> enemies = new InfinityList<>();
+    public static final List<BufferedImage> enemies = new ArrayList<>();
 
     public static void init() {
         BufferedImage img;
@@ -18,7 +19,6 @@ public class ResourcesManager {
             ResourcesManager.enemies.add(img);
             i++;
         }
-        ResourcesManager.enemies.setIndex(EnemyManager.getEnemy().getIndex() - 1);
     }
 
     public static URL getResource(String path) {

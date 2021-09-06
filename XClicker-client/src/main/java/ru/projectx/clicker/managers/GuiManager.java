@@ -16,7 +16,7 @@ public class GuiManager {
     private static Pane menu, auth, game;
     private static TabPane shop_menu;
     private static Text player_money, player_kills, player_level, player_damage;
-    private static Button shop, settings, level, enemy, damage_up, damage_up1, enter;
+    private static Button shop, settings, level, enemy, enter;
     private static ProgressBar hp;
     private static TextField login;
     private static PasswordField password;
@@ -31,8 +31,6 @@ public class GuiManager {
             stage.getIcons().add(new Image(ResourcesManager.getResourceAsStream("images/icons/favicon.png")));
             GuiManager.lookup(scene);
             GuiManager.setLogic();
-            GuiManager.nextEnemy();
-            GuiManager.setHp(1);
             GuiManager.updateStats();
             stage.show();
         } catch (Exception e) {
@@ -47,14 +45,12 @@ public class GuiManager {
         GuiManager.level = (Button) scene.lookup("#level");
         GuiManager.enemy = (Button) scene.lookup("#enemy");
         GuiManager.hp = (ProgressBar) scene.lookup("#hp");
-        GuiManager.damage_up = (Button) scene.lookup("#damage_up");
         GuiManager.enter = (Button) scene.lookup("#enter");
         GuiManager.player_money = (Text) scene.lookup("#player_money");
         GuiManager.player_kills = (Text) scene.lookup("#player_kills");
         GuiManager.player_level = (Text) scene.lookup("#player_level");
         GuiManager.player_level = (Text) scene.lookup("#player_level");
         GuiManager.player_damage = (Text) scene.lookup("#player_damage");
-        GuiManager.damage_up1 = (Button) scene.lookup("#damage_up1");
         GuiManager.login = (TextField) scene.lookup("#login");
         GuiManager.password = (PasswordField) scene.lookup("#password");
         GuiManager.auth = (Pane) scene.lookup("#auth");
@@ -64,21 +60,7 @@ public class GuiManager {
     }
 
     private static void setLogic() {
-        GuiManager.enemy.setOnMouseClicked(event -> EnemyManager.onHit(Player.getDamage()));
-        GuiManager.damage_up.setOnMouseClicked(event -> {
-            if (Player.getMoney() >= 100) {
-                Player.addDamage(10);
-                Player.setMoney(Player.getMoney() - 100);
-                GuiManager.updateStats();
-            }
-        });
-        GuiManager.damage_up1.setOnMouseClicked(event -> {
-            if (Player.getMoney() >= 50000) {
-                Player.addDamage(1000);
-                Player.setMoney(Player.getMoney() - 50000);
-                GuiManager.updateStats();
-            }
-        });
+        GuiManager.enemy.setOnMouseClicked(event -> Client.send("click"));
         GuiManager.enter.setOnMouseClicked(event -> {
             if(!GuiManager.login.getText().isEmpty() && !GuiManager.password.getText().isEmpty()) {
                 Client.send("auth", GuiManager.login.getText(), GuiManager.password.getText());
@@ -89,8 +71,7 @@ public class GuiManager {
             if (GuiManager.shop_menu.isDisable()) {
                 GuiManager.shop_menu.setDisable(false);
                 GuiManager.shop_menu.setVisible(true);
-            }
-            else {
+            } else {
                 GuiManager.shop_menu.setDisable(true);
                 GuiManager.shop_menu.setVisible(false);
             }
@@ -119,7 +100,7 @@ public class GuiManager {
 
     public static void nextEnemy() {
         //todo centered
-        BackgroundImage back = new BackgroundImage(ImageUtils.convertToFxImageJava8(ru.projectx.clicker.managers.ResourcesManager.enemies.getNext()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage back = new BackgroundImage(ImageUtils.convertToFxImageJava8(ResourcesManager.enemies.get(EnemyManager.getEnemy().getIndex())), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         GuiManager.enemy.setBackground(new Background(back));
         GuiManager.enemy.applyCss();
     }

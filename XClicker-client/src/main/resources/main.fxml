@@ -37,10 +37,6 @@
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Button id="damage_up" layoutX="240.0" layoutY="16.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="286.0" text="Вкачать силу атаки на 10 за 100 бабок">
-               <font>
-                  <Font name="Ubuntu" size="14.0" />
-               </font></Button>
             <Text id="player_damage" layoutX="188.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
@@ -53,10 +49,6 @@
                   <String fx:value="track" />
                </styleClass></ProgressBar>
             <Button id="enemy" layoutX="90.0" layoutY="126.0" mnemonicParsing="false" prefHeight="600.0" prefWidth="360.0" />
-            <Button id="damage_up1" layoutX="240.0" layoutY="66.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="286.0" text="Вкачать силу атаки на 1к за 50к бабок">
-               <font>
-                  <Font name="Ubuntu" size="14.0" />
-               </font></Button>
             <Text layoutX="100.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сила атаки:">
                <font>
                   <Font name="Ubuntu" size="16.0" />

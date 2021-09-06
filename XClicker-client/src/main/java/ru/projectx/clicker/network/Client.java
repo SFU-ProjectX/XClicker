@@ -2,6 +2,7 @@ package ru.projectx.clicker.network;
 
 import ru.projectx.clicker.Config;
 import ru.projectx.clicker.Player;
+import ru.projectx.clicker.managers.EnemyManager;
 import ru.projectx.clicker.managers.GuiManager;
 
 import java.io.*;
@@ -50,12 +51,16 @@ public class Client extends Thread {
             case "auth":
                 GuiManager.tryAuth(in.readLine());
                 break;
-            case "sync":
+            case "syncStats":
                 Player.setDamage(Integer.parseInt(in.readLine()));
                 Player.setKills(Integer.parseInt(in.readLine()));
                 Player.setLevel(Integer.parseInt(in.readLine()));
                 Player.setMoney(Integer.parseInt(in.readLine()));
                 GuiManager.updateStats();
+                break;
+            case "syncEnemy":
+                EnemyManager.loadOrUpdateEnemy(Integer.parseInt(in.readLine()), Integer.parseInt(in.readLine()), Integer.parseInt(in.readLine()));
+                break;
         }
     }
 

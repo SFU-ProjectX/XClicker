@@ -28,23 +28,31 @@ public class ServerUser extends Thread {
                 String type = in.readLine();
                 if(type != null)
                     switch (type) {
+                        case "click":
+                            if(this.player != null)
+                                this.player.getEnemies().onHit();
+                            break;
                         case "quit":
-                            if(this.player != null) SaveManager.save(player);
+                            if(this.player != null)
+                                SaveManager.save(player);
                             Server.disconnect(this);
+                            LogUtils.info("Пользователь %s отключился", this.socket.getInetAddress());
+                            break;
                         case "auth":
                             String login = in.readLine();
                             String password = in.readLine();
                             if(AuthManager.tryAuth(this, login, password)) {
                                 LogUtils.info("Пользователь %s c логином %s успешно авторизовался", this.socket.getInetAddress(), login);
-                                this.player = new Player(login);
-                                this.send("sync", player.getDamage(), player.getKills(), player.getLevel(), player.getMoney());
+                                this.player = new Player(login, this);
+                                this.player.syncStats();
+                                this.player.syncEnemy();
                                 this.send("auth", "ok");
                             } else this.send("auth", "no");
                             break;
                 }
             }
-        } catch (IOException e) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             //todo до сюда не доходит
             if(this.player != null) SaveManager.save(player);

@@ -1,16 +1,21 @@
 package ru.projectx.clicker.data;
 
 import ru.projectx.clicker.managers.SaveManager;
+import ru.projectx.clicker.network.ServerUser;
 
 public class Player {
+    private final ServerUser user;
+    private final Enemies enemies;
     private final String name;
     private int damage = 5;
     private int money = 0;
     private int kills = 0;
     private int level = 1;
 
-    public Player(String name) {
+    public Player(String name, ServerUser user) {
+        this.user = user;
         this.name = name;
+        this.enemies = new Enemies(this);
         SaveManager.load(this);
     }
 
@@ -65,4 +70,26 @@ public class Player {
     public String getName() {
         return this.name;
     }
+
+    public Enemies getEnemies() { return this.enemies; }
+
+    public ServerUser getUser() { return this.user; }
+
+    public void onKill(Enemies.Enemy type) {
+        this.addKills();
+        this.addLevel();
+        this.addMoney(type.getReward());
+        this.syncStats();
+    }
+
+    public void syncStats() {
+        this.getUser().send("syncStats", this.getDamage(), this.getKills(), this.getLevel(), this.getMoney());
+    }
+
+    public void syncEnemy() {
+        this.getUser().send("syncEnemy", this.getEnemies().getEnemy().getIndex(), this.getEnemies().getEnemy().getHp(), this.getEnemies().getEnemy().getMaxHp());
+    }
+
+    @Override
+    public String toString() { return "Player{" + "name='" + name + '}'; }
 }

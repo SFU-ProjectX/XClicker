@@ -17,8 +17,7 @@ public class InfinityList<E> {
         this((E[]) list.toArray());
     }
 
-    public InfinityList() {
-    }
+    public InfinityList() {}
 
     public E getNext() {
         this.index = this.index >= this.objects.size() - 1 ? 0 : this.index + 1;

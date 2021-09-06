@@ -1,7 +1,5 @@
 package ru.projectx.clicker;
 
-import ru.projectx.clicker.managers.EnemyManager;
-
 public class Player {
     private static int damage = 5;
     private static int money = 0;
@@ -54,12 +52,6 @@ public class Player {
 
     public static void addDamage(int damage) {
         Player.damage += damage;
-    }
-
-    public static void onKill(EnemyManager.Enemy.TYPE type) {
-        Player.addMoney(type.getReward());
-        Player.addKills();
-        Player.addLevel();
     }
 }
 

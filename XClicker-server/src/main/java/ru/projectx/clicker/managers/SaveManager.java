@@ -19,6 +19,8 @@ public class SaveManager {
             writer.write(player.getKills() + "\n");
             writer.write(player.getLevel() + "\n");
             writer.write(player.getMoney() + "\n");
+            writer.write(player.getEnemies().getEnemy().getIndex() + "\n");
+            writer.write(player.getEnemies().getEnemy().getHp() + "\n");
             writer.close();
         } catch (IOException e) { e.printStackTrace(); }
     }
@@ -34,6 +36,7 @@ public class SaveManager {
                 player.setKills(Integer.parseInt(reader.readLine()));
                 player.setLevel(Integer.parseInt(reader.readLine()));
                 player.setMoney(Integer.parseInt(reader.readLine()));
+                player.getEnemies().load(Integer.parseInt(reader.readLine()), Integer.parseInt(reader.readLine()));
                 fstream.close();
                 reader.close();
             } else LogUtils.info("Данных для игрока %s не найдено", player.getName());
