@@ -1,6 +1,7 @@
 package ru.projectx.clicker.network;
 
 import ru.projectx.clicker.Config;
+import ru.projectx.clicker.Player;
 import ru.projectx.clicker.managers.GuiManager;
 
 import java.io.*;
@@ -18,7 +19,7 @@ public class Client extends Thread {
                 socket = new Socket(Config.host, Config.port);
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                while (!socket.isClosed()) read();
+                while (!socket.isClosed() && socket.isConnected() && !this.isInterrupted()) this.read();
             } finally {
                 if(socket != null) socket.close();
                 if(in != null) in.close();
@@ -30,6 +31,7 @@ public class Client extends Thread {
     }
 
     public static void send(String ... params) {
+        if(socket.isOutputShutdown()) return;
         try {
             out.flush();
             StringBuilder builder = new StringBuilder();
@@ -42,21 +44,26 @@ public class Client extends Thread {
     }
 
     private void read() throws IOException {
+        if(socket.isInputShutdown()) return;
         String i = in.readLine();
-        System.out.println(i);
         switch (i) {
             case "auth":
-                String k = in.readLine();
-                System.out.println(k);
-                GuiManager.tryAuth(k);
+                GuiManager.tryAuth(in.readLine());
+                break;
+            case "sync":
+                Player.setDamage(Integer.parseInt(in.readLine()));
+                Player.setKills(Integer.parseInt(in.readLine()));
+                Player.setLevel(Integer.parseInt(in.readLine()));
+                Player.setMoney(Integer.parseInt(in.readLine()));
+                GuiManager.updateStats();
         }
     }
 
-    public void disconnect() {
+    public void quit() {
         try {
+            send("quit");
             socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            this.interrupt();
+        } catch (Exception e) { e.printStackTrace(); }
     }
 }

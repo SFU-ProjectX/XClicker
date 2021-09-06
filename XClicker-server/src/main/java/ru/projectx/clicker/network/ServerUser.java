@@ -1,9 +1,15 @@
 package ru.projectx.clicker.network;
 
+import ru.projectx.clicker.data.Player;
+import ru.projectx.clicker.managers.AuthManager;
+import ru.projectx.clicker.managers.SaveManager;
+import ru.projectx.clicker.utils.LogUtils;
+
 import java.io.*;
 import java.net.Socket;
 
-class ServerUser extends Thread {
+public class ServerUser extends Thread {
+    private Player player;
     private final Socket socket;
     private final BufferedReader in;
     private final BufferedWriter out;
@@ -18,33 +24,47 @@ class ServerUser extends Thread {
     @Override
     public void run() {
         try {
-            while (!socket.isClosed() && in != null && out != null) {
+            while (!socket.isClosed() && socket.isConnected() && in != null && out != null) {
                 String type = in.readLine();
-                System.out.println(type);
                 if(type != null)
                     switch (type) {
+                        case "quit":
+                            if(this.player != null) SaveManager.save(player);
+                            Server.disconnect(this);
                         case "auth":
-                            String user = in.readLine();
+                            String login = in.readLine();
                             String password = in.readLine();
-                            System.out.println(user);
-                            System.out.println(password);
-                            this.send("auth", "ok");
+                            if(AuthManager.tryAuth(this, login, password)) {
+                                LogUtils.info("Пользователь %s c логином %s успешно авторизовался", this.socket.getInetAddress(), login);
+                                this.player = new Player(login);
+                                this.send("sync", player.getDamage(), player.getKills(), player.getLevel(), player.getMoney());
+                                this.send("auth", "ok");
+                            } else this.send("auth", "no");
                             break;
                 }
             }
+        } catch (IOException e) {
+
+        } finally {
+            //todo до сюда не доходит
+            if(this.player != null) SaveManager.save(player);
             Server.disconnect(this);
-        } catch (IOException e) {}
+        }
     }
 
-    public void send(String ... params) {
+    public void send(Object ... params) {
         try {
             out.flush();
             StringBuilder builder = new StringBuilder();
-            for (String param : params) {
+            for (Object param : params) {
                 builder.append(param).append("\n");
             }
             out.write(builder.toString());
             out.flush();
         } catch (Exception e) { e.printStackTrace(); }
     }
+
+    public Socket getSocket() { return this.socket; }
+
+    public Player getPlayer() { return this.player; }
 }

@@ -27,7 +27,7 @@ public class GuiManager {
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.setTitle("XClicker 1.0.1");
+            stage.setTitle("XClicker");
             stage.getIcons().add(new Image(ResourcesManager.getResourceAsStream("images/icons/favicon.png")));
             GuiManager.lookup(scene);
             GuiManager.setLogic();
