@@ -1,5 +1,6 @@
 package ru.projectx.clicker.managers;
 
+import javafx.scene.media.Media;
 import ru.projectx.clicker.XClickerClient;
 
 import javax.imageio.ImageIO;

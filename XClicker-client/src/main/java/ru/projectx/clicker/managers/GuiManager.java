@@ -1,13 +1,20 @@
 package ru.projectx.clicker.managers;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import ru.projectx.clicker.Player;
 import ru.projectx.clicker.network.Client;
 import ru.projectx.clicker.utils.ImageUtils;
@@ -60,14 +67,32 @@ public class GuiManager {
     }
 
     private static void setLogic() {
-        GuiManager.enemy.setOnMouseClicked(event -> Client.send("click"));
+        GuiManager.settings.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
+        });
+        GuiManager.level.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
+        });
+        GuiManager.enemy.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            Client.send("click");
+            SoundManager.hit.play();
+            SoundManager.hit.seek(Duration.ZERO);
+        });
+
         GuiManager.enter.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
             if(!GuiManager.login.getText().isEmpty() && !GuiManager.password.getText().isEmpty()) {
                 Client.send("auth", GuiManager.login.getText(), GuiManager.password.getText());
             }
         });
 
         GuiManager.shop.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
             if (GuiManager.shop_menu.isDisable()) {
                 GuiManager.shop_menu.setDisable(false);
                 GuiManager.shop_menu.setVisible(true);
@@ -116,6 +141,8 @@ public class GuiManager {
         if(answer.equals("ok")) {
             GuiManager.auth.setDisable(true);
             GuiManager.auth.setVisible(false);
+            SoundManager.song.setCycleCount(Timeline.INDEFINITE);
+            SoundManager.song.play();
         } else {
             //todo fix
             GuiManager.auth.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));

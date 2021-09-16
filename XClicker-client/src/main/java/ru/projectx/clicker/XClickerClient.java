@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import ru.projectx.clicker.managers.GuiManager;
 import ru.projectx.clicker.managers.ResourcesManager;
+import ru.projectx.clicker.managers.SoundManager;
 import ru.projectx.clicker.network.Client;
 
 public class XClickerClient extends Application {
@@ -13,6 +14,7 @@ public class XClickerClient extends Application {
     public void start(Stage stage) {
         client.start();
         ResourcesManager.init();
+        SoundManager.init();
         GuiManager.start(stage);
     }
 
