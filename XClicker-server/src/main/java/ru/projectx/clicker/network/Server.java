@@ -1,40 +1,58 @@
 package ru.projectx.clicker.network;
 
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import ru.projectx.clicker.Config;
 import ru.projectx.clicker.utils.LogUtils;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.LinkedList;
+import java.util.Optional;
 
 public class Server {
-    private static final LinkedList<ServerUser> clients = new LinkedList<>();
+    private static final LinkedList<ServerUser> users = new LinkedList<>();
 
-    public static void start() throws IOException {
-        LogUtils.info("Запуск сервера");
-        ServerSocket server = new ServerSocket(Config.port);
+    public static void start() throws Exception {
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
+
         try {
-            while (true) {
-                Socket socket = server.accept();
-                try {
-                    LogUtils.info("Запрос на подключение от клиента %s", socket.getInetAddress());
-                    System.out.println("Запрос от клиента " + socket.getInetAddress());
-                    clients.add(new ServerUser(socket));
-                    LogUtils.info("Клиент %s успешно подключен", socket.getInetAddress());
-                } catch (IOException e) {
-                    LogUtils.info("Клиент %s не подключен из-за ошибки", socket.getInetAddress());
-                    e.printStackTrace();
-                    socket.close();
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer<SocketChannel>() {
+                @Override
+                public void initChannel(SocketChannel ch) {
+                    ChannelPipeline p = ch.pipeline();
+                    p.addLast(new StringDecoder());
+                    p.addLast(new StringEncoder());
+                    p.addLast(new PacketHandler());
                 }
-            }
+            });
+
+            // Start the server.
+            ChannelFuture f = b.bind(Config.port).sync();
+            LogUtils.info("Запуск сервера");
+
+            // Wait until the server socket is closed.
+            f.channel().closeFuture().sync();
         } finally {
-            server.close();
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
         }
     }
 
-    public static void disconnect(ServerUser user) {
-        Server.clients.remove(user);
-        LogUtils.info("Клиент %s отключен", user.getSocket().getInetAddress());
+    public static void join(Channel channel) {
+        LogUtils.info("Client joined - %s", channel);
+        users.add(new ServerUser(channel));
     }
+
+    public static void quit(Channel channel) {
+        LogUtils.info("Closing connection for client - %s", channel);
+        Server.get(channel).ifPresent(users::remove);
+    }
+
+    public static Optional<ServerUser> get(Channel channel) { return users.stream().filter(user -> user.getChannel().equals(channel)).findFirst(); }
 }

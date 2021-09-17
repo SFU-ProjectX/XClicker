@@ -9,3 +9,11 @@ jar {
         )
     }
 }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'io.netty', name: 'netty-all', version: '5.0.0.Alpha2'
+}

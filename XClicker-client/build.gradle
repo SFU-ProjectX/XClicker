@@ -1,3 +1,4 @@
+/*
 plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.9'
@@ -19,5 +20,26 @@ jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
         name = 'XClicker-client'
+    }
+}
+ */
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'io.netty', name: 'netty-all', version: '5.0.0.Alpha2'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ru.projectx.clicker.XClickerClient'
+        )
     }
 }

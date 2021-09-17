@@ -1,78 +1,42 @@
 package ru.projectx.clicker.network;
 
+import io.netty.channel.Channel;
 import ru.projectx.clicker.data.Player;
-import ru.projectx.clicker.managers.AuthManager;
-import ru.projectx.clicker.managers.SaveManager;
-import ru.projectx.clicker.utils.LogUtils;
+import ru.projectx.clicker.network.packets.IPacket;
 
-import java.io.*;
-import java.net.Socket;
+import java.util.Objects;
+import java.util.Optional;
 
-public class ServerUser extends Thread {
+public class ServerUser {
     private Player player;
-    private final Socket socket;
-    private final BufferedReader in;
-    private final BufferedWriter out;
+    private final Channel channel;
 
-    public ServerUser(Socket socket) throws IOException {
-        this.socket = socket;
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        this.start();
+    public ServerUser(Channel channel) { this.channel = channel; }
+
+    public void handle(IPacket packet) {
+        packet.execute(this);
+    }
+
+    public Channel getChannel() { return this.channel; }
+
+    public Optional<Player> getPlayer() { return Optional.ofNullable(this.player); }
+
+    public boolean isLoggedIn() { return this.getPlayer().isPresent(); }
+
+    public void loggedIn(String login) {
+        this.player = new Player(login, this);
     }
 
     @Override
-    public void run() {
-        try {
-            while (!socket.isClosed() && socket.isConnected() && in != null && out != null) {
-                String type = in.readLine();
-                if(type != null)
-                    switch (type) {
-                        case "click":
-                            if(this.player != null)
-                                this.player.getEnemies().onHit();
-                            break;
-                        case "quit":
-                            if(this.player != null)
-                                SaveManager.save(player);
-                            Server.disconnect(this);
-                            LogUtils.info("Пользователь %s отключился", this.socket.getInetAddress());
-                            break;
-                        case "auth":
-                            String login = in.readLine();
-                            String password = in.readLine();
-                            if(AuthManager.tryAuth(this, login, password)) {
-                                LogUtils.info("Пользователь %s c логином %s успешно авторизовался", this.socket.getInetAddress(), login);
-                                this.player = new Player(login, this);
-                                this.player.syncStats();
-                                this.player.syncEnemy();
-                                this.send("auth", "ok");
-                            } else this.send("auth", "no");
-                            break;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            //todo до сюда не доходит
-            if(this.player != null) SaveManager.save(player);
-            Server.disconnect(this);
-        }
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        ServerUser that = (ServerUser) o;
+        return Objects.equals(channel, that.channel);
     }
 
-    public void send(Object ... params) {
-        try {
-            out.flush();
-            StringBuilder builder = new StringBuilder();
-            for (Object param : params) {
-                builder.append(param).append("\n");
-            }
-            out.write(builder.toString());
-            out.flush();
-        } catch (Exception e) { e.printStackTrace(); }
+    @Override
+    public int hashCode() {
+        return Objects.hash(channel);
     }
-
-    public Socket getSocket() { return this.socket; }
-
-    public Player getPlayer() { return this.player; }
 }

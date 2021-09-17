@@ -6,13 +6,15 @@ import ru.projectx.clicker.managers.GuiManager;
 import ru.projectx.clicker.managers.ResourcesManager;
 import ru.projectx.clicker.managers.SoundManager;
 import ru.projectx.clicker.network.Client;
+import ru.projectx.clicker.network.PacketRegistry;
+import ru.projectx.clicker.network.packets.QuitPacket;
 
 public class XClickerClient extends Application {
-    private final Client client = new Client();
 
     @Override
-    public void start(Stage stage) {
-        client.start();
+    public void start(Stage stage) throws Exception {
+        PacketRegistry.init();
+        Client.init();
         ResourcesManager.init();
         SoundManager.init();
         GuiManager.start(stage);
@@ -20,7 +22,7 @@ public class XClickerClient extends Application {
 
     @Override
     public void stop() throws Exception {
-        client.quit();
+        new QuitPacket().sendToServer();
         super.stop();
     }
 }

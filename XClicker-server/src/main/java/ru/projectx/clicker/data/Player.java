@@ -2,6 +2,8 @@ package ru.projectx.clicker.data;
 
 import ru.projectx.clicker.managers.SaveManager;
 import ru.projectx.clicker.network.ServerUser;
+import ru.projectx.clicker.network.packets.SyncEnemyPacket;
+import ru.projectx.clicker.network.packets.SyncPlayerStatsPacket;
 
 public class Player {
     private final ServerUser user;
@@ -83,11 +85,11 @@ public class Player {
     }
 
     public void syncStats() {
-        this.getUser().send("syncStats", this.getDamage(), this.getKills(), this.getLevel(), this.getMoney());
+        new SyncPlayerStatsPacket(this.getDamage(), this.getKills(), this.getLevel(), this.getMoney()).sendToClient(this.user);
     }
 
     public void syncEnemy() {
-        this.getUser().send("syncEnemy", this.getEnemies().getEnemy().getIndex(), this.getEnemies().getEnemy().getHp(), this.getEnemies().getEnemy().getMaxHp());
+        new SyncEnemyPacket(this.getEnemies().getEnemy().getIndex(), this.getEnemies().getEnemy().getHp(), this.getEnemies().getEnemy().getMaxHp()).sendToClient(this.user);
     }
 
     @Override

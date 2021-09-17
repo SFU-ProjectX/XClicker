@@ -2,21 +2,18 @@ package ru.projectx.clicker.managers;
 
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ru.projectx.clicker.Player;
-import ru.projectx.clicker.network.Client;
+import ru.projectx.clicker.network.packets.AuthPacket;
+import ru.projectx.clicker.network.packets.ClickEnemyPacket;
 import ru.projectx.clicker.utils.ImageUtils;
 
 public class GuiManager {
@@ -77,7 +74,7 @@ public class GuiManager {
         });
         GuiManager.enemy.setOnMouseClicked(event -> {
             if(event.getButton() != MouseButton.PRIMARY) return;
-            Client.send("click");
+            new ClickEnemyPacket().sendToServer();
             SoundManager.hit.play();
             SoundManager.hit.seek(Duration.ZERO);
         });
@@ -86,7 +83,7 @@ public class GuiManager {
             if(event.getButton() != MouseButton.PRIMARY) return;
             SoundManager.playClick();
             if(!GuiManager.login.getText().isEmpty() && !GuiManager.password.getText().isEmpty()) {
-                Client.send("auth", GuiManager.login.getText(), GuiManager.password.getText());
+                new AuthPacket(GuiManager.login.getText(), GuiManager.password.getText()).sendToServer();
             }
         });
 
@@ -136,8 +133,8 @@ public class GuiManager {
         GuiManager.setPlayerDamage(Player.getDamage());
     }
 
-    public static void tryAuth(String answer) {
-        if(answer.equals("ok")) {
+    public static void tryAuth(boolean ok) {
+        if(ok) {
             GuiManager.auth.setDisable(true);
             GuiManager.auth.setVisible(false);
             SoundManager.song.setCycleCount(Timeline.INDEFINITE);
