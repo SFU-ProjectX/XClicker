@@ -8,10 +8,11 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import ru.projectx.clicker.Config;
 import ru.projectx.clicker.network.packets.IPacket;
 
-public class Client {
-    private static ChannelFuture future;
+public class Client extends Thread{
+    private static Channel channel;
 
-    public static void init() throws Exception {
+    @Override
+    public void run() {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
@@ -25,10 +26,14 @@ public class Client {
             });
 
             // Start the client.
-            future = b.connect(Config.host, Config.port).sync();
+            ChannelFuture future = b.connect(Config.host, Config.port).sync();
+
+            channel = future.channel();
 
             // Wait until the connection is closed.
-            future.channel().closeFuture().sync();
+            //future.channel().closeFuture().sync();
+        } catch(Exception e) {
+            e.printStackTrace();
         } finally {
             // Shut down the event loop to terminate all threads.
             group.shutdownGracefully();
@@ -37,9 +42,8 @@ public class Client {
 
     public static void send(IPacket packet) {
         try {
-            Channel channel = future.sync().channel();
             channel.writeAndFlush(packet);
-            channel.flush();
+            //channel.flush();
         } catch(Exception e) { e.printStackTrace(); }
     }
 }

@@ -5,8 +5,6 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import ru.projectx.clicker.Config;
 import ru.projectx.clicker.utils.LogUtils;
 
@@ -26,8 +24,7 @@ public class Server {
                 @Override
                 public void initChannel(SocketChannel ch) {
                     ChannelPipeline p = ch.pipeline();
-                    p.addLast(new StringDecoder());
-                    p.addLast(new StringEncoder());
+                    p.addLast(new PacketCodec());
                     p.addLast(new PacketHandler());
                 }
             });

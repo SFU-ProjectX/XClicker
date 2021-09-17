@@ -90,13 +90,8 @@ public class GuiManager {
         GuiManager.shop.setOnMouseClicked(event -> {
             if(event.getButton() != MouseButton.PRIMARY) return;
             SoundManager.playClick();
-            if (GuiManager.shop_menu.isDisable()) {
-                GuiManager.shop_menu.setDisable(false);
-                GuiManager.shop_menu.setVisible(true);
-            } else {
-                GuiManager.shop_menu.setDisable(true);
-                GuiManager.shop_menu.setVisible(false);
-            }
+            GuiManager.shop_menu.setDisable(!GuiManager.shop_menu.isDisable());
+            GuiManager.shop_menu.setVisible(GuiManager.shop_menu.isDisable());
         });
     }
 
