@@ -31,15 +31,13 @@ public class Client extends Thread{
             // Start the client.
             ChannelFuture future = b.connect(Config.host, Config.port).sync();
 
-            var channel = future.sync().channel();
+            Channel channel = future.sync().channel();
             while (channel != null && channel.isOpen()) {
                 while (!sendPacketsQueue.isEmpty()) {
-                    System.out.println("Передаю пакет! В очереде " + sendPacketsQueue.size());
                     channel.writeAndFlush(sendPacketsQueue.poll());
                     channel.flush();
                 }
             }
-            System.out.println("closed");
             // Wait until the connection is closed.
             future.channel().closeFuture().sync();
         } catch(Exception e) {

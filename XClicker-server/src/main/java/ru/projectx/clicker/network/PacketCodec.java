@@ -11,7 +11,7 @@ public class PacketCodec extends ByteToMessageCodec<IPacket> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, IPacket msg, ByteBuf out) throws Exception {
-        //todo may be not work
+        out.writeInt(PacketRegistry.getId(msg));
         msg.encode(out);
     }
 
