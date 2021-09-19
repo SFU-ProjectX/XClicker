@@ -1,13 +1,13 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'ru.projectx.clicker.XClickerServer'
-        )
-    }
+mainClassName = 'ru.projectx.clicker.XClickerServer'
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 repositories {
@@ -16,4 +16,14 @@ repositories {
 
 dependencies {
     implementation group: 'io.netty', name: 'netty-all', version: '5.0.0.Alpha2'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }

@@ -8,8 +8,11 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import ru.projectx.clicker.Config;
 import ru.projectx.clicker.network.packets.IPacket;
 
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 public class Client extends Thread{
-    private static Channel channel;
+    private static final Queue<IPacket> sendPacketsQueue = new ConcurrentLinkedQueue<>();
 
     @Override
     public void run() {
@@ -28,10 +31,17 @@ public class Client extends Thread{
             // Start the client.
             ChannelFuture future = b.connect(Config.host, Config.port).sync();
 
-            channel = future.channel();
-
+            var channel = future.sync().channel();
+            while (channel != null && channel.isOpen()) {
+                while (!sendPacketsQueue.isEmpty()) {
+                    System.out.println("Передаю пакет! В очереде " + sendPacketsQueue.size());
+                    channel.writeAndFlush(sendPacketsQueue.poll());
+                    channel.flush();
+                }
+            }
+            System.out.println("closed");
             // Wait until the connection is closed.
-            //future.channel().closeFuture().sync();
+            future.channel().closeFuture().sync();
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
@@ -41,9 +51,6 @@ public class Client extends Thread{
     }
 
     public static void send(IPacket packet) {
-        try {
-            channel.writeAndFlush(packet);
-            //channel.flush();
-        } catch(Exception e) { e.printStackTrace(); }
+        sendPacketsQueue.add(packet);
     }
 }
