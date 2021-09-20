@@ -34,7 +34,8 @@ public class Client extends Thread{
             Channel channel = future.sync().channel();
             while (channel != null && channel.isOpen()) {
                 while (!sendPacketsQueue.isEmpty()) {
-                    channel.writeAndFlush(sendPacketsQueue.poll());
+                    IPacket msg = sendPacketsQueue.poll();
+                    channel.writeAndFlush(msg).addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
                     channel.flush();
                 }
             }

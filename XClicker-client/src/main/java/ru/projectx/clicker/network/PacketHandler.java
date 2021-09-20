@@ -7,7 +7,7 @@ import ru.projectx.clicker.network.packets.IPacket;
 public class PacketHandler extends SimpleChannelInboundHandler<IPacket> {
 
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, IPacket packet) {
+    protected void channelRead0(ChannelHandlerContext ctx, IPacket packet) {
         packet.execute();
     }
 }

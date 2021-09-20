@@ -26,6 +26,7 @@ public class Server {
                     ChannelPipeline p = ch.pipeline();
                     p.addLast(new PacketCodec());
                     p.addLast(new PacketHandler());
+                    //p.addLast(new LoggingHandler(LogLevel.DEBUG));
                 }
             });
 

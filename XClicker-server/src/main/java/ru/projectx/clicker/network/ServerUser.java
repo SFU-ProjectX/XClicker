@@ -2,7 +2,6 @@ package ru.projectx.clicker.network;
 
 import io.netty.channel.Channel;
 import ru.projectx.clicker.data.Player;
-import ru.projectx.clicker.network.packets.AuthPacket;
 import ru.projectx.clicker.network.packets.IPacket;
 
 import java.util.Objects;
