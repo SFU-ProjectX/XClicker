@@ -1,6 +1,5 @@
 package ru.projectx.clicker.data;
 
-import ru.projectx.clicker.managers.SaveManager;
 import ru.projectx.clicker.network.ServerUser;
 import ru.projectx.clicker.network.packets.SyncEnemyPacket;
 import ru.projectx.clicker.network.packets.SyncPlayerStatsPacket;

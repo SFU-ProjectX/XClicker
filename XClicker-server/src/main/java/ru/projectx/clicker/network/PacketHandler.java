@@ -21,7 +21,7 @@ public class PacketHandler extends SimpleChannelInboundHandler<IPacket> {
 
     @Override
     protected void messageReceived(ChannelHandlerContext ctx, IPacket packet) throws Exception {
-        LogUtils.info("Server received packet %s from %s", packet, ctx);
+        LogUtils.info("Server received packet %s from %s", packet.getClass(), ctx);
         Server.get(ctx.channel()).ifPresent(user -> user.handle(packet));
     }
 }
