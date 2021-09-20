@@ -18,7 +18,6 @@ public class Player {
         this.user = user;
         this.name = name;
         this.enemies = new Enemies(this);
-        SaveManager.load(this);
     }
 
     public int getDamage() {

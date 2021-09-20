@@ -11,7 +11,7 @@ public class SaveManager {
 
     public static void save(Player player) {
         try {
-            LogUtils.info("Сохранение данных для игрока %s...", player.getName());
+            LogUtils.info("Save stats for user %s...", player.getName());
             File save = new File(SaveManager.appdata + File.separator + name + File.separator + player.getName() + ".txt");
             if (!save.exists()) save.createNewFile();
             FileWriter writer = new FileWriter(save);
@@ -27,7 +27,7 @@ public class SaveManager {
 
     public static void load(Player player) {
         try {
-            LogUtils.info("Загрузка данных для игрока %s...", player.getName());
+            LogUtils.info("Load stats for user %s...", player.getName());
             File save = new File(SaveManager.appdata + File.separator + name + File.separator + player.getName() + ".txt");
             if (save.exists()) {
                 FileInputStream fstream = new FileInputStream(save);
@@ -39,7 +39,7 @@ public class SaveManager {
                 player.getEnemies().load(Integer.parseInt(reader.readLine()), Integer.parseInt(reader.readLine()));
                 fstream.close();
                 reader.close();
-            } else LogUtils.info("Данных для игрока %s не найдено", player.getName());
+            } else LogUtils.info("Stats for user %s not found", player.getName());
         } catch (IOException e) { e.printStackTrace(); }
     }
 }

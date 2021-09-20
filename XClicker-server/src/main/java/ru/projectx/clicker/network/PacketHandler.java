@@ -14,6 +14,7 @@ public class PacketHandler extends SimpleChannelInboundHandler<IPacket> {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        LogUtils.info("Some exception with user %s, disconnecting his", ctx.channel());
         Server.quit(ctx.channel());
         ctx.close();
     }
