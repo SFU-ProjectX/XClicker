@@ -2,6 +2,7 @@ package ru.projectx.clicker.managers;
 
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -17,7 +18,10 @@ import ru.projectx.clicker.network.packets.ClickEnemyPacket;
 import ru.projectx.clicker.utils.Hash;
 import ru.projectx.clicker.utils.ImageUtils;
 
+import java.util.ArrayList;
+
 public class GuiManager {
+    private static final ArrayList<Node> GUI_OBJECTS = new ArrayList<>();
     private static Pane menu, auth, game;
     private static TabPane shop_menu;
     private static Text player_money, player_kills, player_level, player_damage;
@@ -31,8 +35,27 @@ public class GuiManager {
             FXMLLoader loader = new FXMLLoader(ResourcesManager.getResource("main.fxml"));
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
-            stage.setResizable(false);
+            //stage.setResizable(false);
             stage.setTitle("XClicker");
+            stage.widthProperty().addListener((observable, oldValue, newValue) -> {
+                if(Double.isNaN(oldValue.doubleValue())) return;
+                GUI_OBJECTS.forEach(node -> {
+                    if(node instanceof Region) {
+                        Region region = (Region) node;
+                        region.setPrefSize(region.getPrefWidth() + (newValue.doubleValue() - oldValue.doubleValue()), region.getPrefHeight());
+                    }
+                });
+            });
+            stage.heightProperty().addListener((observable, oldValue, newValue) -> {
+                if(Double.isNaN(oldValue.doubleValue())) return;
+                GUI_OBJECTS.forEach(node -> {
+                    if(node instanceof Region) {
+                        Region region = (Region) node;
+                        region.setPrefSize(region.getPrefWidth(), region.getPrefHeight() + (newValue.doubleValue() - oldValue.doubleValue()));
+                    }
+                });
+            });
+
             stage.getIcons().add(new Image(ResourcesManager.getResourceAsStream("images/icons/favicon.png")));
             GuiManager.lookup(scene);
             GuiManager.setLogic();
@@ -45,23 +68,29 @@ public class GuiManager {
     }
 
     private static void lookup(Scene scene) {
-        GuiManager.shop = (Button) scene.lookup("#shop");
-        GuiManager.settings = (Button) scene.lookup("#settings");
-        GuiManager.level = (Button) scene.lookup("#level");
-        GuiManager.enemy = (Button) scene.lookup("#enemy");
-        GuiManager.hp = (ProgressBar) scene.lookup("#hp");
-        GuiManager.enter = (Button) scene.lookup("#enter");
-        GuiManager.player_money = (Text) scene.lookup("#player_money");
-        GuiManager.player_kills = (Text) scene.lookup("#player_kills");
-        GuiManager.player_level = (Text) scene.lookup("#player_level");
-        GuiManager.player_level = (Text) scene.lookup("#player_level");
-        GuiManager.player_damage = (Text) scene.lookup("#player_damage");
-        GuiManager.login = (TextField) scene.lookup("#login");
-        GuiManager.password = (PasswordField) scene.lookup("#password");
-        GuiManager.auth = (Pane) scene.lookup("#auth");
-        GuiManager.menu = (Pane) scene.lookup("#menu");
-        GuiManager.game = (Pane) scene.lookup("#game");
-        GuiManager.shop_menu = (TabPane) scene.lookup("#shop_menu");
+        GuiManager.shop = GuiManager.get(scene, "#shop", Button.class);
+        GuiManager.settings = GuiManager.get(scene, "#settings", Button.class);
+        GuiManager.level = GuiManager.get(scene, "#level", Button.class);
+        GuiManager.enemy = GuiManager.get(scene, "#enemy", Button.class);
+        GuiManager.hp = GuiManager.get(scene, "#hp", ProgressBar.class);
+        GuiManager.enter = GuiManager.get(scene, "#enter", Button.class);
+        GuiManager.player_money = GuiManager.get(scene, "#player_money", Text.class);
+        GuiManager.player_kills = GuiManager.get(scene, "#player_kills", Text.class);
+        GuiManager.player_level = GuiManager.get(scene, "#player_level", Text.class);
+        GuiManager.player_level = GuiManager.get(scene, "#player_level", Text.class);
+        GuiManager.player_damage = GuiManager.get(scene, "#player_damage", Text.class);
+        GuiManager.login = GuiManager.get(scene, "#login", TextField.class);
+        GuiManager.password = GuiManager.get(scene, "#password", PasswordField.class);
+        GuiManager.auth = GuiManager.get(scene, "#auth", Pane.class);
+        GuiManager.menu = GuiManager.get(scene, "#menu", Pane.class);
+        GuiManager.game = GuiManager.get(scene, "#game", Pane.class);
+        GuiManager.shop_menu = GuiManager.get(scene, "#shop_menu", TabPane.class);
+    }
+
+    private static <N extends Node> N get(Scene scene, String name, Class<N> type) {
+        N node = type.cast(scene.lookup(name));
+        GUI_OBJECTS.add(node);
+        return node;
     }
 
     private static void setLogic() {
