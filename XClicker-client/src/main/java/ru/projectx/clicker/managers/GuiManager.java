@@ -14,6 +14,7 @@ import javafx.util.Duration;
 import ru.projectx.clicker.Player;
 import ru.projectx.clicker.network.packets.AuthPacket;
 import ru.projectx.clicker.network.packets.ClickEnemyPacket;
+import ru.projectx.clicker.utils.Hash;
 import ru.projectx.clicker.utils.ImageUtils;
 
 public class GuiManager {
@@ -83,7 +84,7 @@ public class GuiManager {
             if(event.getButton() != MouseButton.PRIMARY) return;
             SoundManager.playClick();
             if(!GuiManager.login.getText().isEmpty() && !GuiManager.password.getText().isEmpty()) {
-                new AuthPacket(GuiManager.login.getText(), GuiManager.password.getText()).sendToServer();
+                new AuthPacket(GuiManager.login.getText(), Hash.getHash(Hash.getHash(GuiManager.password.getText()))).sendToServer();
             }
         });
 

@@ -1,6 +1,5 @@
 package ru.projectx.clicker.data;
 
-import ru.projectx.clicker.managers.SaveManager;
 import ru.projectx.clicker.network.ServerUser;
 import ru.projectx.clicker.network.packets.SyncEnemyPacket;
 import ru.projectx.clicker.network.packets.SyncPlayerStatsPacket;
@@ -18,7 +17,6 @@ public class Player {
         this.user = user;
         this.name = name;
         this.enemies = new Enemies(this);
-        SaveManager.load(this);
     }
 
     public int getDamage() {

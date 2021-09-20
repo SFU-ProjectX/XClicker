@@ -32,7 +32,7 @@ public class Server {
 
             // Start the server.
             ChannelFuture f = b.bind(Config.port).sync();
-            LogUtils.info("Запуск сервера");
+            LogUtils.info("Starting server");
 
             // Wait until the server socket is closed.
             f.channel().closeFuture().sync();

@@ -16,6 +16,9 @@ repositories {
 
 dependencies {
     implementation 'io.netty:netty-all:4.0.4.Final'
+    implementation group: 'io.netty', name: 'netty-all', version: '5.0.0.Alpha2'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.26'
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '4.0.3'
 }
 
 jar {

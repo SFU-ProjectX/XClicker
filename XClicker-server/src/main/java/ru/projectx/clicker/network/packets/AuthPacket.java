@@ -3,6 +3,7 @@ package ru.projectx.clicker.network.packets;
 import io.netty.buffer.ByteBuf;
 import ru.projectx.clicker.data.Player;
 import ru.projectx.clicker.managers.AuthManager;
+import ru.projectx.clicker.managers.SaveManager;
 import ru.projectx.clicker.network.ServerUser;
 import ru.projectx.clicker.utils.ByteBufUtils;
 import ru.projectx.clicker.utils.LogUtils;
@@ -23,6 +24,7 @@ public class AuthPacket implements IPacket {
             if(AuthManager.tryAuth(user, login, password)) {
                 LogUtils.info("Пользователь %s c логином %s успешно авторизовался", user.getChannel(), login);
                 user.loggedIn(login);
+                user.getPlayer().ifPresent(SaveManager::load);
                 user.getPlayer().ifPresent(Player::syncStats);
                 user.getPlayer().ifPresent(Player::syncEnemy);
                 new AuthPacket(true).sendToClient(user);
