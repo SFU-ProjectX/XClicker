@@ -39,19 +39,24 @@ public class GuiManager {
             stage.setTitle("XClicker");
             stage.widthProperty().addListener((observable, oldValue, newValue) -> {
                 if(Double.isNaN(oldValue.doubleValue())) return;
+                double scale = newValue.doubleValue() / oldValue.doubleValue();
                 GUI_OBJECTS.forEach(node -> {
                     if(node instanceof Region) {
                         Region region = (Region) node;
-                        region.setPrefSize(region.getPrefWidth() + (newValue.doubleValue() - oldValue.doubleValue()), region.getPrefHeight());
+                        region.setLayoutX(region.getLayoutX() * scale);
+                        region.setPrefWidth(region.getPrefWidth() * scale);
                     }
                 });
             });
+
             stage.heightProperty().addListener((observable, oldValue, newValue) -> {
                 if(Double.isNaN(oldValue.doubleValue())) return;
+                double scale = newValue.doubleValue() / oldValue.doubleValue();
                 GUI_OBJECTS.forEach(node -> {
                     if(node instanceof Region) {
                         Region region = (Region) node;
-                        region.setPrefSize(region.getPrefWidth(), region.getPrefHeight() + (newValue.doubleValue() - oldValue.doubleValue()));
+                        region.setLayoutY(region.getLayoutY() * scale);
+                        region.setPrefHeight(region.getPrefHeight() * scale);
                     }
                 });
             });
