@@ -72,6 +72,10 @@
     -fx-background-color: #365c88;
 }
 
+#friends_menu {
+    -fx-background-color: #365c88;
+}
+
 #auth {
     -fx-background-color: white;
 }
@@ -88,6 +92,27 @@
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-image: url('../images/weapons/2.png');
+}
+
+#item1_icon {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/items/1.png');
+}
+
+#item2_icon {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/items/2.png');
+}
+
+#item3_icon {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/items/3.png');
 }
 
 .progress-bar .bar {
