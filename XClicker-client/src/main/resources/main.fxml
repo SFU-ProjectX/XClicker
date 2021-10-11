@@ -69,11 +69,42 @@
       </Pane>
       <Pane id="friends_menu" disable="true" prefHeight="840.0" prefWidth="540.0" visible="false">
          <children>
-            <Text fill="WHITE" layoutX="213.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Друзья" textAlignment="CENTER">
+            <TextField alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="86.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="490.0" promptText="Имя друга" style="-fx-background-color: transperent;" styleClass="search-friends">
                <font>
-                  <Font name="System Bold" size="32.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
-            </Text>
+            </TextField>
+            <Pane id="friends_header" prefHeight="61.0" prefWidth="540.0">
+               <children>
+                  <Text id="friend_text" fill="WHITE" layoutX="213.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Друзья" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <VBox id="friends_list" layoutX="-1.0" layoutY="147.0" prefHeight="691.0" prefWidth="540.0">
+               <children>
+                  <Pane prefHeight="95.0" prefWidth="540.0">
+                     <children>
+                        <Button id="add_friend_button" layoutX="369.0" layoutY="9.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="157.0" styleClass="button1" text="Добавить в друзья">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                        <Pane id="profile_pic" layoutX="14.0" layoutY="17.0" prefHeight="61.0" prefWidth="65.0" />
+                        <Text id="user_name" fill="WHITE" layoutX="93.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="302.13671875">
+                           <font>
+                              <Font size="52.0" />
+                           </font>
+                        </Text>
+                        <Button id="transfer_button" layoutX="369.0" layoutY="48.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="157.0" styleClass="button1" text="Перевести">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
          </children>
       </Pane>
       <TabPane id="shop_menu" disable="true" prefHeight="840.0" prefWidth="540.0" tabClosingPolicy="UNAVAILABLE" visible="false">
@@ -97,12 +128,12 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Text>
-                                    <Button id="buyButton_w1" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Купить">
+                                    <Button id="buyButton_w1" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button id="upButton_w1" disable="true" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
+                                    <Button id="upButton_w1" disable="true" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Апгрейд" visible="false">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -122,12 +153,12 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Text>
-                                    <Button id="buyButton_w2" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Купить">
+                                    <Button id="buyButton_w2" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button id="upButton_w2" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
+                                    <Button id="upButton_w2" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Апгрейд" visible="false">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -235,7 +266,7 @@
             <Button id="friends" layoutX="140.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" />
          </children>
       </Pane>
-      <Pane id="auth" prefHeight="960.0" prefWidth="540.0">
+      <Pane id="auth" prefHeight="960.0" prefWidth="540.0" visible="false">
          <children>
             <TextField id="login" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="347.0" minWidth="-Infinity" prefHeight="50.0" prefWidth="490.0" promptText="Логин" style="-fx-text-fill: #96affa; -fx-background-color: transparent;" styleClass="login-logo">
                <font>
