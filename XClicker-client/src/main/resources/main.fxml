@@ -13,31 +13,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane id="game" prefHeight="830.0" prefWidth="540.0">
          <children>
-            <Text layoutX="100.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кол-во побед:">
+            <Text layoutX="100.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кол-во побед:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text layoutX="100.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Уровень:">
+            <Text layoutX="101.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Уровень:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_money" layoutX="165.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_money" layoutX="165.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_level" layoutX="171.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_level" layoutX="170.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_damage" layoutX="188.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_damage" layoutX="192.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
@@ -49,22 +49,32 @@
                   <String fx:value="track" />
                </styleClass></ProgressBar>
             <Button id="enemy" layoutX="90.0" layoutY="126.0" mnemonicParsing="false" prefHeight="600.0" prefWidth="360.0" />
-            <Text layoutX="100.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сила атаки:">
+            <Text layoutX="101.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сила атаки:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_kills" layoutX="211.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_kills" layoutX="209.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text layoutX="100.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Валюта:">
+            <Text layoutX="100.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Валюта:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
             <Pane id="avatar" prefHeight="101.0" prefWidth="101.0" />
+            <Text layoutX="101.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Урон в секунду:">
+               <font>
+                  <Font name="Ubuntu" size="16.0" />
+               </font>
+            </Text>
+            <Text id="player_damage_auto" layoutX="224.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Ubuntu" size="16.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane id="friends_menu" disable="true" prefHeight="840.0" prefWidth="540.0" visible="false">
@@ -123,7 +133,7 @@
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику" wrappingWidth="223.0">
+                                    <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику (добавляет 10 % от урона)" wrappingWidth="223.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -148,7 +158,7 @@
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магическое оружие, способное поглащать души поверженных врагов, увеличивая свою могущественность" wrappingWidth="223.0">
+                                    <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магическое оружие, способное поглащать души поверженных врагов, увеличивая свою могущественность (добавляет 25% от урона)" wrappingWidth="223.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -189,7 +199,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Text>
-                                    <Button id="buyButton_i1" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Купить">
+                                    <Button id="buyButton_i1" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -204,7 +214,7 @@
                               <Pane id="item2" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <Pane id="item2_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зеленый плащ с капюшоном" wrappingWidth="331.0">
+                                    <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Черный плащ с капюшоном" wrappingWidth="331.0">
                                        <font>
                                           <Font name="System Bold" size="21.0" />
                                        </font>
@@ -214,7 +224,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Text>
-                                    <Button id="buyButton_i2" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Купить">
+                                    <Button id="buyButton_i2" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -239,7 +249,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Text>
-                                    <Button id="buyButton_i3" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Купить">
+                                    <Button id="buyButton_i3" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -266,7 +276,7 @@
             <Button id="friends" layoutX="140.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" />
          </children>
       </Pane>
-      <Pane id="auth" prefHeight="960.0" prefWidth="540.0">
+      <Pane id="auth" prefHeight="960.0" prefWidth="540.0" visible="false">
          <children>
             <TextField id="login" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="347.0" minWidth="-Infinity" prefHeight="50.0" prefWidth="490.0" promptText="Логин" style="-fx-text-fill: #96affa; -fx-background-color: transparent;" styleClass="login-logo">
                <font>
