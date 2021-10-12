@@ -1,8 +1,12 @@
 package ru.projectx.clicker.managers;
 
 import ru.projectx.clicker.data.Player;
+import ru.projectx.clicker.network.Server;
 
+import java.sql.Time;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UpgradesManager {
     private static final HashMap<Integer, HashMap<Integer, Upgrade>> upgrades = new HashMap<>();
@@ -14,7 +18,17 @@ public class UpgradesManager {
         UpgradesManager.upgrades.get(0).put(1, new Upgrade(100000, 10000));
         UpgradesManager.upgrades.get(1).put(0, new Upgrade(100000, 50));
         UpgradesManager.upgrades.get(1).put(1, new Upgrade(10000000, 500));
-        UpgradesManager.upgrades.get(1).put(2, new Upgrade(1000000000, 5000));
+        UpgradesManager.upgrades.get(1).put(2, new Upgrade(100000000, 5000));
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                Server.getUsers().forEach(user -> user.getPlayer().ifPresent(player -> {
+                    if(player.getAutoDamage() != 0) {
+                        player.getEnemies().onHit(player.getAutoDamage());
+                    }
+                }));
+            }
+        }, 0, 1000);
     }
 
     public static void onBuy(Player player, int type, int id) {

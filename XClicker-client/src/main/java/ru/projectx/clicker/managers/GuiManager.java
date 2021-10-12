@@ -20,10 +20,12 @@ import ru.projectx.clicker.utils.Hash;
 import ru.projectx.clicker.utils.ImageUtils;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GuiManager {
     private static final ArrayList<Node> GUI_OBJECTS = new ArrayList<>();
-    private static Pane menu, auth, game, shop_menu;
+    private static Pane menu, auth, game, shop_menu, error_auth;
     private static Text player_money, player_kills, player_level, player_damage, player_damage_auto;
     private static Button shop, settings, level, enemy, enter, upgrade1, upgrade2, upgradeA1, upgradeA2, upgradeA3;
     private static ProgressBar hp;
@@ -91,6 +93,7 @@ public class GuiManager {
         GuiManager.menu = GuiManager.get(scene, "#menu", Pane.class);
         GuiManager.game = GuiManager.get(scene, "#game", Pane.class);
         GuiManager.shop_menu = GuiManager.get(scene, "#shop_menu", Pane.class);
+        GuiManager.error_auth = GuiManager.get(scene, "#error_auth", Pane.class);
         GuiManager.upgrade1 = GuiManager.get(scene, "#buyButton_w1", Button.class);
         GuiManager.upgrade2 = GuiManager.get(scene, "#buyButton_w2", Button.class);
         GuiManager.upgradeA1 = GuiManager.get(scene, "#buyButton_i1", Button.class);
@@ -197,7 +200,7 @@ public class GuiManager {
         GuiManager.setPlayerLevel(Player.getLevel());
         GuiManager.setPlayerMoney(Player.getMoney());
         GuiManager.setPlayerDamage(Player.getDamage());
-        //GuiManager.setPlayerAutoDamage(Player.getAutoDamage());
+        GuiManager.setPlayerAutoDamage(Player.getAutoDamage());
     }
 
     public static void tryAuth(boolean ok) {
@@ -206,8 +209,13 @@ public class GuiManager {
             SoundManager.song.setCycleCount(Timeline.INDEFINITE);
             SoundManager.song.play();
         } else {
-            //todo fix
-            GuiManager.auth.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+            GuiManager.error_auth.setVisible(true);
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    GuiManager.error_auth.setVisible(false);
+                }
+            }, 2500L);
         }
     }
 }

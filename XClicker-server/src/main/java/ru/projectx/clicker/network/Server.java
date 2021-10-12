@@ -53,4 +53,8 @@ public class Server {
     }
 
     public static Optional<ServerUser> get(Channel channel) { return users.stream().filter(user -> user.getChannel().equals(channel)).findFirst(); }
+
+    public static LinkedList<ServerUser> getUsers() {
+        return users;
+    }
 }

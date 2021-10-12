@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane id="game" prefHeight="830.0" prefWidth="540.0">
          <children>
@@ -70,7 +70,7 @@
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_damage" layoutX="221.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_damage_auto" layoutX="221.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
@@ -135,7 +135,7 @@
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику" wrappingWidth="223.0">
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику (+100 урона)" wrappingWidth="223.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -151,17 +151,12 @@
                                              </font>
                                           </Button>
                                           <Pane id="item_price" layoutX="413.0" layoutY="55.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                          <Text id="weapon1_price" fill="WHITE" layoutX="443.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                          <Text id="weapon1_price" fill="WHITE" layoutX="443.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000" textAlignment="CENTER" wrappingWidth="93.14373779296875">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Text>
                                           <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                          <Text id="weapon1_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Text>
                                        </children>
                                     </Pane>
                                     <Pane id="weapon2" prefHeight="220.0" prefWidth="200.0">
@@ -172,7 +167,7 @@
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магическое оружие, способное поглащать души поверженных врагов, увеличивая свою могущественность" wrappingWidth="223.0">
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магическое оружие, способное поглащать души поверженных врагов, увеличивая свою могущественность (+ 10000 урона)" wrappingWidth="223.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -188,17 +183,12 @@
                                              </font>
                                           </Button>
                                           <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                          <Text id="weapon2_price" fill="WHITE" layoutX="445.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                          <Text id="weapon2_price" fill="WHITE" layoutX="445.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100000" textAlignment="CENTER" wrappingWidth="93.14373779296875">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Text>
                                           <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                          <Text id="weapon2_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Text>
                                        </children>
                                     </Pane>
                                  </children>
@@ -221,12 +211,12 @@
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику" wrappingWidth="223.0">
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику (+ 50 урона/сек)" wrappingWidth="223.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Text>
-                                          <Button id="buyButton_i1" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
+                                          <Button id="buyButton_i1" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -236,34 +226,29 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Button>
-                                          <Pane id="item_price" layoutX="413.0" layoutY="55.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                          <Text id="item1_price" fill="WHITE" layoutX="443.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                          <Pane id="item_price" layoutX="398.0" layoutY="55.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="item1_price" fill="WHITE" layoutX="434.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100000" textAlignment="CENTER" wrappingWidth="93.14373779296875">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Text>
                                           <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                          <Text id="item1_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Text>
                                        </children>
                                     </Pane>
                                     <Pane id="item2" prefHeight="220.0" prefWidth="200.0">
                                        <children>
                                           <Pane id="item2_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
-                                          <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зеленый плащ с капюшоном" wrappingWidth="331.0">
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Черный плащ с капюшоном" wrappingWidth="331.0">
                                              <font>
                                                 <Font name="System Bold" size="21.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Придает носителю облик фантома и сбивает с толку врагов. Пока плащ надет на игрока его урон увеличен" wrappingWidth="223.0">
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Придает носителю облик фантома и сбивает с толку врагов. Пока плащ надет на игрока его урон увеличен  (+ 500 урона/сек)" wrappingWidth="223.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Text>
-                                          <Button id="buyButton_i2" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
+                                          <Button id="buyButton_i2" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -273,18 +258,13 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Button>
-                                          <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                          <Text id="item2_price" fill="WHITE" layoutX="445.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                          <Pane id="item_price" layoutX="400.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="item2_price" fill="WHITE" layoutX="434.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10000000" textAlignment="CENTER" wrappingWidth="93.14373779296875">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Text>
                                           <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                          <Text id="item2_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Text>
                                        </children>
                                     </Pane>
                                     <Pane id="item3" prefHeight="220.0" prefWidth="200.0">
@@ -295,12 +275,12 @@
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольцо с редким синим камнем позволяет наносит автоматически 10% от урона игрока каждую секунду" wrappingWidth="223.0">
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольцо с редким синим камнем  (+ 5000 урона/сек)" wrappingWidth="223.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Text>
-                                          <Button id="buyButton_i3" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
+                                          <Button id="buyButton_i3" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" styleClass="button1" text="Купить">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -310,18 +290,13 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Button>
-                                          <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                          <Text id="item3_price" fill="WHITE" layoutX="445.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                          <Pane id="item_price" layoutX="400.0" layoutY="62.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="item3_price" fill="WHITE" layoutX="430.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100000000" textAlignment="CENTER" wrappingWidth="113.3125">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Text>
                                           <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                          <Text id="item3_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </Text>
                                        </children>
                                     </Pane>
                                  </children>
@@ -359,7 +334,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </PasswordField>
-            <Pane id="error_auth" layoutX="134.0" layoutY="223.0" prefHeight="50.0" prefWidth="250.0">
+            <Pane id="error_auth" layoutX="134.0" layoutY="223.0" prefHeight="50.0" prefWidth="250.0" visible="false">
                <children>
                   <Pane layoutY="1.0" prefHeight="50.0" prefWidth="50.0" styleClass="error_icon" />
                   <Text fill="RED" layoutX="50.0" layoutY="32.0" strokeWidth="0.0" text="Ошибка авторизации" textAlignment="CENTER">

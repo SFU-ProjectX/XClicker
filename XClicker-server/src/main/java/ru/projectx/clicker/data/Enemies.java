@@ -18,8 +18,8 @@ public class Enemies {
         this.current.setHp(hp);
     }
 
-    public void onHit() {
-        this.current.hit(this.player.getDamage());
+    public void onHit(int damage) {
+        this.current.hit(damage);
         if (this.current.isDead()) {
             this.player.onKill(this.current);
             this.current = this.enemies.getNext().create();

@@ -7,6 +7,6 @@ public class ClickEnemyPacket implements IPacket {
 
     @Override
     public void execute(ServerUser user) {
-        user.getPlayer().ifPresent(player -> player.getEnemies().onHit());
+        user.getPlayer().ifPresent(player -> player.getEnemies().onHit(player.getDamage()));
     }
 }
