@@ -201,10 +201,25 @@
     -fx-background-image: url('../images/avatars/profile.png');
 }
 
-.button1{
+.button1 {
     -fx-text-fill: #ffffff;
     -fx-background-color: royalblue;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
     -fx-padding: 5;
 }
+
+#item_price {
+	-fx-background-color: transparent;
+	-fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+	-fx-background-image: url('../images/icons/coin.png');
+}
+
+#item_count {
+	-fx-background-color: transparent;
+	-fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+	-fx-background-image: url('../images/icons/count.png');
+}
+
