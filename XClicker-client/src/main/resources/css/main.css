@@ -224,3 +224,9 @@
 	-fx-background-image: url('../images/icons/count.png');
 }
 
+.error_icon{
+	-fx-background-color: transparent;
+	-fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url('../images/icons/error.png');
+}

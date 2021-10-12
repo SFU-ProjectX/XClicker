@@ -13,31 +13,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane id="game" prefHeight="830.0" prefWidth="540.0">
          <children>
-            <Text layoutX="100.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кол-во побед:">
+            <Text layoutX="100.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кол-во побед:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text layoutX="100.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Уровень:">
+            <Text layoutX="100.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Уровень:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_money" layoutX="165.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_money" layoutX="161.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_level" layoutX="171.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_level" layoutX="169.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_damage" layoutX="188.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_damage" layoutX="189.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
@@ -49,22 +49,32 @@
                   <String fx:value="track" />
                </styleClass></ProgressBar>
             <Button id="enemy" layoutX="90.0" layoutY="126.0" mnemonicParsing="false" prefHeight="600.0" prefWidth="360.0" />
-            <Text layoutX="100.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сила атаки:">
+            <Text layoutX="100.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сила атаки:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text id="player_kills" layoutX="211.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text id="player_kills" layoutX="209.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
-            <Text layoutX="100.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Валюта:">
+            <Text layoutX="100.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Валюта:">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Text>
             <Pane id="avatar" prefHeight="101.0" prefWidth="101.0" />
+            <Text layoutX="101.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Урон в секунду:">
+               <font>
+                  <Font name="Ubuntu" size="16.0" />
+               </font>
+            </Text>
+            <Text id="player_damage" layoutX="221.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Ubuntu" size="16.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane id="friends_menu" disable="true" prefHeight="840.0" prefWidth="540.0" visible="false">
@@ -334,21 +344,31 @@
       </Pane>
       <Pane id="auth" prefHeight="960.0" prefWidth="540.0">
          <children>
-            <TextField id="login" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="347.0" minWidth="-Infinity" prefHeight="50.0" prefWidth="490.0" promptText="Логин" style="-fx-text-fill: #96affa; -fx-background-color: transparent;" styleClass="login-logo">
+            <TextField id="login" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="430.0" minWidth="-Infinity" prefHeight="50.0" prefWidth="490.0" promptText="Логин" style="-fx-text-fill: #96affa; -fx-background-color: transparent;" styleClass="login-logo">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
-            <Button id="enter" alignment="CENTER" layoutX="95.0" layoutY="770.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #32CD32;" text="ВОЙТИ" textFill="WHITE">
+            <Button id="enter" alignment="CENTER" layoutX="95.0" layoutY="812.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #32CD32;" text="ВОЙТИ" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <PasswordField id="password" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="533.0" prefHeight="50.0" prefWidth="490.0" promptText="Пароль" style="-fx-text-fill: #96affa; -fx-background-color: transparent;" styleClass="password-logo">
+            <PasswordField id="password" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="559.0" prefHeight="50.0" prefWidth="490.0" promptText="Пароль" style="-fx-text-fill: #96affa; -fx-background-color: transparent;" styleClass="password-logo">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </PasswordField>
+            <Pane id="error_auth" layoutX="134.0" layoutY="223.0" prefHeight="50.0" prefWidth="250.0">
+               <children>
+                  <Pane layoutY="1.0" prefHeight="50.0" prefWidth="50.0" styleClass="error_icon" />
+                  <Text fill="RED" layoutX="50.0" layoutY="32.0" strokeWidth="0.0" text="Ошибка авторизации" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
