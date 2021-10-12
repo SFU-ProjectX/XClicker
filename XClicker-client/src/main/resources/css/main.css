@@ -179,6 +179,7 @@
 	-fx-background-image: url('../images/background/login_field.png');
     -fx-prompt-text-fill: #e2e2e2;
 }
+
 .password-logo {
 	-fx-background-image: url('../images/background/password_field.png');
     -fx-prompt-text-fill: #e2e2e2;

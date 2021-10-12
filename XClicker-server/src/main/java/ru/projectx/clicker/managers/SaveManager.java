@@ -16,6 +16,7 @@ public class SaveManager {
             if (!save.exists()) save.createNewFile();
             FileWriter writer = new FileWriter(save);
             writer.write(player.getDamage() + "\n");
+            writer.write(player.getAutoDamage() + "\n");
             writer.write(player.getKills() + "\n");
             writer.write(player.getLevel() + "\n");
             writer.write(player.getMoney() + "\n");
@@ -33,6 +34,7 @@ public class SaveManager {
                 FileInputStream fstream = new FileInputStream(save);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(fstream));
                 player.setDamage(Integer.parseInt(reader.readLine()));
+                player.setAutoDamage(Integer.parseInt(reader.readLine()));
                 player.setKills(Integer.parseInt(reader.readLine()));
                 player.setLevel(Integer.parseInt(reader.readLine()));
                 player.setMoney(Integer.parseInt(reader.readLine()));

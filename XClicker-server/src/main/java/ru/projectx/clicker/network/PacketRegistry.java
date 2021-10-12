@@ -17,6 +17,7 @@ public class PacketRegistry {
         packets.put(3, QuitPacket.class);
         packets.put(4, SyncEnemyPacket.class);
         packets.put(5, SyncPlayerStatsPacket.class);
+        packets.put(6, BuyUpgradePacket.class);
         LogUtils.info("Packets successfully registered");
     }
 

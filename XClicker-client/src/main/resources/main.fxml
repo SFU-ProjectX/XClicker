@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="540.0" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane id="game" prefHeight="830.0" prefWidth="540.0">
          <children>
@@ -107,217 +107,223 @@
             </VBox>
          </children>
       </Pane>
-      <TabPane id="shop_menu" disable="true" prefHeight="840.0" prefWidth="540.0" tabClosingPolicy="UNAVAILABLE" visible="false">
-         <tabs>
-            <Tab closable="false" text="Оружие">
-               <content>
-                  <AnchorPane id="shop_pane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="540.0">
-                     <children>
-                        <VBox id="weapon_list" prefHeight="810.0" prefWidth="540.0">
+      <Pane id="shop_menu" prefHeight="840.0" prefWidth="540.0" visible="false">
+         <children>
+            <TabPane focusTraversable="false" prefHeight="840.0" prefWidth="540.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab closable="false" text="Оружие">
+                     <content>
+                        <AnchorPane id="shop_pane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="540.0">
                            <children>
-                              <Pane id="weapon1" prefHeight="220.0" prefWidth="200.0">
+                              <VBox id="weapon_list" prefHeight="810.0" prefWidth="540.0">
                                  <children>
-                                    <Pane id="weapon1_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Простой кинжал" wrappingWidth="360.0">
-                                       <font>
-                                          <Font name="System Bold" size="24.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику" wrappingWidth="223.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Button id="buyButton_w1" layoutX="413.0" layoutY="109.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="113.0" styleClass="button1" text="Купить">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Button id="upButton_w1" disable="true" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Апгрейд" visible="false">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Pane id="item_price" layoutX="413.0" layoutY="55.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                    <Text id="weapon1_price" fill="WHITE" layoutX="443.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                    <Text id="weapon1_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
+                                    <Pane id="weapon1" prefHeight="220.0" prefWidth="200.0">
+                                       <children>
+                                          <Pane id="weapon1_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Простой кинжал" wrappingWidth="360.0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику" wrappingWidth="223.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                          <Button id="buyButton_w1" layoutX="413.0" layoutY="109.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="113.0" styleClass="button1" text="Купить">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Button id="upButton_w1" disable="true" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Апгрейд" visible="false">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Pane id="item_price" layoutX="413.0" layoutY="55.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="weapon1_price" fill="WHITE" layoutX="443.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
+                                          <Text id="weapon1_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Pane>
+                                    <Pane id="weapon2" prefHeight="220.0" prefWidth="200.0">
+                                       <children>
+                                          <Pane id="weapon2_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магический клинок" wrappingWidth="331.0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магическое оружие, способное поглащать души поверженных врагов, увеличивая свою могущественность" wrappingWidth="223.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                          <Button id="buyButton_w2" layoutX="415.0" layoutY="112.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="button1" text="Купить">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Button id="upButton_w2" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Апгрейд" visible="false">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="weapon2_price" fill="WHITE" layoutX="445.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
+                                          <Text id="weapon2_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Pane>
                                  </children>
-                              </Pane>
-                              <Pane id="weapon2" prefHeight="220.0" prefWidth="200.0">
-                                 <children>
-                                    <Pane id="weapon2_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магический клинок" wrappingWidth="331.0">
-                                       <font>
-                                          <Font name="System Bold" size="24.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Магическое оружие, способное поглащать души поверженных врагов, увеличивая свою могущественность" wrappingWidth="223.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Button id="buyButton_w2" layoutX="415.0" layoutY="112.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="button1" text="Купить">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Button id="upButton_w2" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" styleClass="button1" text="Апгрейд" visible="false">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                    <Text id="weapon2_price" fill="WHITE" layoutX="445.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                    <Text id="weapon2_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
+                              </VBox>
                            </children>
-                        </VBox>
-                     </children></AnchorPane>
-               </content>
-            </Tab>
-            <Tab closable="false" text="Вещи">
-               <content>
-                  <AnchorPane id="shop_pane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox id="item_list" prefHeight="810.0" prefWidth="540.0">
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Вещи">
+                     <content>
+                        <AnchorPane id="shop_pane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Pane id="item1" prefHeight="220.0" prefWidth="200.0">
+                              <VBox id="item_list" prefHeight="810.0" prefWidth="540.0">
                                  <children>
-                                    <Pane id="item1_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольцо солнца" wrappingWidth="360.0">
-                                       <font>
-                                          <Font name="System Bold" size="24.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику" wrappingWidth="223.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Button id="buyButton_i1" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Button id="upButton_i1" disable="true" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Pane id="item_price" layoutX="413.0" layoutY="55.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                    <Text id="item1_price" fill="WHITE" layoutX="443.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                    <Text id="item1_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
+                                    <Pane id="item1" prefHeight="220.0" prefWidth="200.0">
+                                       <children>
+                                          <Pane id="item1_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольцо солнца" wrappingWidth="360.0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Одноручное холодное оружие, засчет своего изогнутого лезвия, способен быстро наносить удары противнику" wrappingWidth="223.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                          <Button id="buyButton_i1" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Button id="upButton_i1" disable="true" layoutX="413.0" layoutY="55.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Pane id="item_price" layoutX="413.0" layoutY="55.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="item1_price" fill="WHITE" layoutX="443.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
+                                          <Text id="item1_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Pane>
+                                    <Pane id="item2" prefHeight="220.0" prefWidth="200.0">
+                                       <children>
+                                          <Pane id="item2_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зеленый плащ с капюшоном" wrappingWidth="331.0">
+                                             <font>
+                                                <Font name="System Bold" size="21.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Придает носителю облик фантома и сбивает с толку врагов. Пока плащ надет на игрока его урон увеличен" wrappingWidth="223.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                          <Button id="buyButton_i2" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Button id="upButton_i2" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="item2_price" fill="WHITE" layoutX="445.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
+                                          <Text id="item2_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Pane>
+                                    <Pane id="item3" prefHeight="220.0" prefWidth="200.0">
+                                       <children>
+                                          <Pane id="item3_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Древний перстень" wrappingWidth="331.0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольцо с редким синим камнем позволяет наносит автоматически 10% от урона игрока каждую секунду" wrappingWidth="223.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                          <Button id="buyButton_i3" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Button id="upButton_i3" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
+                                          <Text id="item3_price" fill="WHITE" layoutX="445.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
+                                          <Text id="item3_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Pane>
                                  </children>
-                              </Pane>
-                              <Pane id="item2" prefHeight="220.0" prefWidth="200.0">
-                                 <children>
-                                    <Pane id="item2_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зеленый плащ с капюшоном" wrappingWidth="331.0">
-                                       <font>
-                                          <Font name="System Bold" size="21.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Придает носителю облик фантома и сбивает с толку врагов. Пока плащ надет на игрока его урон увеличен" wrappingWidth="223.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Button id="buyButton_i2" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Button id="upButton_i2" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                    <Text id="item2_price" fill="WHITE" layoutX="445.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                    <Text id="item2_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
-                              <Pane id="item3" prefHeight="220.0" prefWidth="200.0">
-                                 <children>
-                                    <Pane id="item3_icon" layoutX="14.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" />
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Древний перстень" wrappingWidth="331.0">
-                                       <font>
-                                          <Font name="System Bold" size="24.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="WHITE" layoutX="178.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кольцо с редким синим камнем позволяет наносит автоматически 10% от урона игрока каждую секунду" wrappingWidth="223.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Button id="buyButton_i3" layoutX="430.0" layoutY="127.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Купить">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Button id="upButton_i3" disable="true" layoutX="415.0" layoutY="61.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="101.0" text="Апгрейд" visible="false">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                    <Pane id="item_price" layoutX="415.0" layoutY="61.0" prefHeight="30.0" prefWidth="30.0" styleClass="item_price1" />
-                                    <Text id="item3_price" fill="WHITE" layoutX="445.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Pane id="item_count" layoutX="14.0" layoutY="175.0" prefHeight="32.0" prefWidth="32.0" />
-                                    <Text id="item3_count" fill="WHITE" layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="93.14373779296875">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
+                              </VBox>
                            </children>
-                        </VBox>
-                     </children></AnchorPane>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </children>
+      </Pane>
       <Pane id="menu" layoutY="840.0" prefHeight="120.0" prefWidth="540.0">
          <children>
             <Button id="settings" layoutX="420.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" />

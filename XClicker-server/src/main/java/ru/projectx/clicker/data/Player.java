@@ -8,7 +8,8 @@ public class Player {
     private final ServerUser user;
     private final Enemies enemies;
     private final String name;
-    private int damage = 5;
+    private int damage = 10;
+    private int auto_damage = 0;
     private int money = 0;
     private int kills = 0;
     private int level = 1;
@@ -18,6 +19,12 @@ public class Player {
         this.name = name;
         this.enemies = new Enemies(this);
     }
+
+    public int getAutoDamage() { return this.auto_damage; }
+
+    public void addAutoDamage(int auto_damage) { this.auto_damage += auto_damage; }
+
+    public void setAutoDamage(int auto_damage) { this.auto_damage = auto_damage; }
 
     public int getDamage() {
         return this.damage;
@@ -83,7 +90,7 @@ public class Player {
     }
 
     public void syncStats() {
-        new SyncPlayerStatsPacket(this.getDamage(), this.getKills(), this.getLevel(), this.getMoney()).sendToClient(this.user);
+        new SyncPlayerStatsPacket(this.getDamage(), this.getKills(), this.getLevel(), this.getMoney(), this.getAutoDamage()).sendToClient(this.user);
     }
 
     public void syncEnemy() {

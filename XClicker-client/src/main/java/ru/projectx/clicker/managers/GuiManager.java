@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import ru.projectx.clicker.Player;
 import ru.projectx.clicker.network.packets.AuthPacket;
+import ru.projectx.clicker.network.packets.BuyUpgradePacket;
 import ru.projectx.clicker.network.packets.ClickEnemyPacket;
 import ru.projectx.clicker.utils.Hash;
 import ru.projectx.clicker.utils.ImageUtils;
@@ -22,10 +23,9 @@ import java.util.ArrayList;
 
 public class GuiManager {
     private static final ArrayList<Node> GUI_OBJECTS = new ArrayList<>();
-    private static Pane menu, auth, game;
-    private static TabPane shop_menu;
-    private static Text player_money, player_kills, player_level, player_damage;
-    private static Button shop, settings, level, enemy, enter;
+    private static Pane menu, auth, game, shop_menu;
+    private static Text player_money, player_kills, player_level, player_damage, player_damage_auto;
+    private static Button shop, settings, level, enemy, enter, upgrade1, upgrade2, upgradeA1, upgradeA2, upgradeA3;
     private static ProgressBar hp;
     private static TextField login;
     private static PasswordField password;
@@ -84,12 +84,18 @@ public class GuiManager {
         GuiManager.player_level = GuiManager.get(scene, "#player_level", Text.class);
         GuiManager.player_level = GuiManager.get(scene, "#player_level", Text.class);
         GuiManager.player_damage = GuiManager.get(scene, "#player_damage", Text.class);
+        GuiManager.player_damage_auto = GuiManager.get(scene, "#player_damage_auto", Text.class);
         GuiManager.login = GuiManager.get(scene, "#login", TextField.class);
         GuiManager.password = GuiManager.get(scene, "#password", PasswordField.class);
         GuiManager.auth = GuiManager.get(scene, "#auth", Pane.class);
         GuiManager.menu = GuiManager.get(scene, "#menu", Pane.class);
         GuiManager.game = GuiManager.get(scene, "#game", Pane.class);
-        GuiManager.shop_menu = GuiManager.get(scene, "#shop_menu", TabPane.class);
+        GuiManager.shop_menu = GuiManager.get(scene, "#shop_menu", Pane.class);
+        GuiManager.upgrade1 = GuiManager.get(scene, "#buyButton_w1", Button.class);
+        GuiManager.upgrade2 = GuiManager.get(scene, "#buyButton_w2", Button.class);
+        GuiManager.upgradeA1 = GuiManager.get(scene, "#buyButton_i1", Button.class);
+        GuiManager.upgradeA2 = GuiManager.get(scene, "#buyButton_i2", Button.class);
+        GuiManager.upgradeA3 = GuiManager.get(scene, "#buyButton_i3", Button.class);
     }
 
     private static <N extends Node> N get(Scene scene, String name, Class<N> type) {
@@ -99,6 +105,31 @@ public class GuiManager {
     }
 
     private static void setLogic() {
+        GuiManager.upgrade1.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
+            GuiManager.onUpgrade(0, 0);
+        });
+        GuiManager.upgrade2.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
+            GuiManager.onUpgrade(0, 1);
+        });
+        GuiManager.upgradeA1.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
+            GuiManager.onUpgrade(1, 0);
+        });
+        GuiManager.upgradeA2.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
+            GuiManager.onUpgrade(1, 1);
+        });
+        GuiManager.upgradeA3.setOnMouseClicked(event -> {
+            if(event.getButton() != MouseButton.PRIMARY) return;
+            SoundManager.playClick();
+            GuiManager.onUpgrade(1, 2);
+        });
         GuiManager.settings.setOnMouseClicked(event -> {
             if(event.getButton() != MouseButton.PRIMARY) return;
             SoundManager.playClick();
@@ -113,7 +144,6 @@ public class GuiManager {
             SoundManager.hit.play();
             SoundManager.hit.seek(Duration.ZERO);
         });
-
         GuiManager.enter.setOnMouseClicked(event -> {
             if(event.getButton() != MouseButton.PRIMARY) return;
             SoundManager.playClick();
@@ -121,13 +151,15 @@ public class GuiManager {
                 new AuthPacket(GuiManager.login.getText(), Hash.getHash(Hash.getHash(GuiManager.password.getText()))).sendToServer();
             }
         });
-
         GuiManager.shop.setOnMouseClicked(event -> {
             if(event.getButton() != MouseButton.PRIMARY) return;
             SoundManager.playClick();
-            GuiManager.shop_menu.setDisable(!GuiManager.shop_menu.isDisable());
-            GuiManager.shop_menu.setVisible(GuiManager.shop_menu.isDisable());
+            GuiManager.shop_menu.setVisible(!GuiManager.shop_menu.isVisible());
         });
+    }
+
+    public static void onUpgrade(int type, int id) {
+        new BuyUpgradePacket(type, id).sendToServer();
     }
 
     public static void setHp(double percent) {
@@ -150,6 +182,10 @@ public class GuiManager {
         GuiManager.player_damage.setText(damage.toString());
     }
 
+    public static void setPlayerAutoDamage(Object damage) {
+        GuiManager.player_damage_auto.setText(damage.toString());
+    }
+
     public static void nextEnemy() {
         BackgroundImage back = new BackgroundImage(ImageUtils.convertToFxImageJava8(ResourcesManager.enemies.get(EnemyManager.getEnemy().getIndex())), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(-1, -1, true, true, true, false));
         GuiManager.enemy.setBackground(new Background(back));
@@ -161,11 +197,11 @@ public class GuiManager {
         GuiManager.setPlayerLevel(Player.getLevel());
         GuiManager.setPlayerMoney(Player.getMoney());
         GuiManager.setPlayerDamage(Player.getDamage());
+        //GuiManager.setPlayerAutoDamage(Player.getAutoDamage());
     }
 
     public static void tryAuth(boolean ok) {
         if(ok) {
-            GuiManager.auth.setDisable(true);
             GuiManager.auth.setVisible(false);
             SoundManager.song.setCycleCount(Timeline.INDEFINITE);
             SoundManager.song.play();

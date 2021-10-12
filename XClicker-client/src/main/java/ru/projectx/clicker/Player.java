@@ -1,13 +1,16 @@
 package ru.projectx.clicker;
 
 public class Player {
-    private static int damage = 5;
+    private static int auto_damage = 0;
+    private static int damage = 10;
     private static int money = 0;
     private static int kills = 0;
     private static int level = 1;
 
+    public static int getAutoDamage() { return Player.auto_damage; }
+
     public static int getDamage() {
-        return damage;
+        return Player.damage;
     }
 
     public static void setDamage(int damage) {
@@ -53,5 +56,7 @@ public class Player {
     public static void addDamage(int damage) {
         Player.damage += damage;
     }
+
+    public static void setAutoDamage(int auto_damage) { Player.auto_damage = auto_damage; }
 }
 
