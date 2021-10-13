@@ -7,12 +7,11 @@ import java.io.*;
 
 public class SaveManager {
     private static final String name = "XClickerData";
-    private static final String appdata = System.getenv("APPDATA");
 
     public static void save(Player player) {
         try {
             LogUtils.info("Save stats for user %s...", player.getName());
-            File save = new File(SaveManager.appdata + File.separator + name + File.separator + player.getName() + ".txt");
+            File save = new File("." + File.separator + name + File.separator + player.getName());
             if (!save.exists()) save.createNewFile();
             FileWriter writer = new FileWriter(save);
             writer.write(player.getDamage() + "\n");
@@ -29,7 +28,7 @@ public class SaveManager {
     public static void load(Player player) {
         try {
             LogUtils.info("Load stats for user %s...", player.getName());
-            File save = new File(SaveManager.appdata + File.separator + name + File.separator + player.getName() + ".txt");
+            File save = new File("." + File.separator + name + File.separator + player.getName());
             if (save.exists()) {
                 FileInputStream fstream = new FileInputStream(save);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(fstream));

@@ -27,5 +27,6 @@ public class XClickerClient extends Application {
         new QuitPacket().sendToServer();
         client.interrupt();
         super.stop();
+        System.exit(0);
     }
 }

@@ -14,9 +14,12 @@ public class AuthManager {
     private static final HashMap<Channel, Long> cooldowns = new HashMap<>();
 
     public static boolean tryAuth(ServerUser user, String login, String password) {
-        return true;
-        /*
         LogUtils.info("Try auth user %s, with login %s and password %s", user.getChannel(), login, password);
+
+        if(user.getPlayer().isPresent()) {
+            LogUtils.info("User %s already logged in", user.getChannel());
+            return false;
+        }
 
         if(login == null || password == null || login.isEmpty() || password.isEmpty()) {
             LogUtils.info("User %s try auth with empty or null login or password", user.getChannel());
@@ -35,7 +38,7 @@ public class AuthManager {
         try {
             DBObject object = DBObject.of(login, "name");
             DBType<String> value = DBType.of("password");
-            Optional<String> db_password = DatabaseManager.getValue("game", object, value);
+            Optional<String> db_password = DatabaseManager.getValue("users", object, value);
             if(db_password.isPresent()) {
                 if(db_password.get().equals(password)) {
                     LogUtils.info("User %s successfully ended auth with login %s", user.getChannel(), login);
@@ -51,7 +54,6 @@ public class AuthManager {
             }
         } catch(Exception e) { e.printStackTrace(); }
         return false;
-        */
     }
 
     private static void clearCooldown(Channel channel) {
